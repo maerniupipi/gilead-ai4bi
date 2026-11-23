@@ -1,0 +1,21 @@
+# Aliyun SAE Python 3.9.15. Upper bounds keep pip from pulling 3.10-only wheels.
+alembic>=1.14
+cryptography>=44.0
+eval-type-backport>=0.2.2
+fastapi>=0.118.0,<0.129.0
+httpx>=0.28
+Jinja2>=3.1.6,<4
+tokenizers==0.22.2
+markdown-it-py>=3.0,<4
+pydantic>=2.10,<3
+pydantic-settings>=2.7,<3
+PyMySQL>=1.1
+python-multipart>=0.0.9
+python-pptx>=1.0.2,<2
+reportlab>=4.4,<5
+openpyxl>=3.1.5,<4
+psycopg[binary]>=3.2
+sqlalchemy>=2.0.36
+sqlglot>=25.0
+starlette>=0.45.0,<0.50.0
+uvicorn[standard]>=0.32.0,<0.36.0

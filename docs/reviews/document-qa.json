@@ -1,0 +1,21 @@
+{
+  "review_date": "2026-10-22",
+  "artifacts": [
+    {
+      "artifact": "吉利德AI4BI_POC架构与实施方案.docx",
+      "sha256": "627a5296304c9c18d23799b1b0f95578d1f5757e612f370e7e12e236424f088b",
+      "pages": 18,
+      "all_pages_visually_inspected": true,
+      "no_blank_pages": true,
+      "status": "passed"
+    },
+    {
+      "artifact": "Gilead AI4BI Project Supplementary Material_中文.docx",
+      "sha256": "9e26e48737daab7523dc1e220b34cc185dfb9d5dde2d7da9f6ef8e74eb397d7a",
+      "pages": 1,
+      "all_pages_visually_inspected": true,
+      "no_blank_pages": true,
+      "status": "passed"
+    }
+  ]
+}

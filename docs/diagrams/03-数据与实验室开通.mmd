@@ -1,0 +1,15 @@
+flowchart TB
+  DICT[中文六表字典 133列] --> DDL[build_schema 生成 MySQL DDL]
+  DDL --> DB[(同一阿里云 RDS 新库 gilead_poc)]
+  SEED[确定性模拟数据与独立金标准] --> LOAD[小批次事务与进度标记]
+  LOAD --> DB
+  DB --> CHECK[只读账号核验结构 关系 KPI 与权限]
+  DB --> DS[强生实验中心数据源18 已注册并连接成功]
+  DS -.-> KB[新建吉利德知识库 仅选择六表]
+  KPI[KPI口径 中文字段说明与SQL示例] -.-> KB
+  KB -.-> LAB[发布独立吉利德 DDI 实验室]
+  LAB -.-> ID[取得实验室 API调用ID]
+  ID -.-> BIND[在 ReAct 强生实验中心页绑定 actual]
+  BIND -.-> UAT[真实链路与区域权限验收]
+  classDef planned fill:#f7f7f7,stroke:#7b8796,stroke-dasharray:5 4;
+  class KB,LAB,ID,BIND,UAT planned;

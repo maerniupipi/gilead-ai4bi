@@ -1,0 +1,5 @@
+Noto Sans SC, Google Fonts / Noto CJK.
+Source: https://github.com/google/fonts/tree/main/ofl/notosanssc
+License: SIL Open Font License 1.1, reproduced in OFL.txt.
+Regular weight 400 instantiated from NotoSansSC[wght].ttf with fontTools.
+Used for embedded Chinese text in PDF exports.

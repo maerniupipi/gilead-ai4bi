@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-22",
+  "branch": "jilide-poc",
+  "business_database": "gilead_poc",
+  "control_database": "gilead_agent_loop",
+  "business_rows": 467668,
+  "business_columns": 133,
+  "database_checks_passed": 60,
+  "sql_examples_passed": 3,
+  "backend_tests_passed": 409,
+  "frontend_tests_passed": 88,
+  "adapter_targeted_tests_passed": 31,
+  "frontend_build": "passed",
+  "coordinator_connectivity": "passed",
+  "experiment_center_data_source_id": 18,
+  "gilead_lab_published": false,
+  "territory_authorization_implemented": false,
+  "document_review_rounds": 3,
+  "main_document_pages": 18,
+  "supplement_document_pages": 1,
+  "task_code_write_root": "/Users/shaox/Desktop/吉利德/ReAct",
+  "original_jnj_code_modified_by_this_task": false
+}

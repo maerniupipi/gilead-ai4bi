@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>小英 · 数据源管理设计稿</title>
+  <style>
+    :root {
+      --accent: #8a174d;
+      --accent-dark: #641039;
+      --accent-soft: #f6e8ef;
+      --plum: #2b1622;
+      --success: #227257;
+      --danger: #a63838;
+      --warning: #986716;
+      --bg: #f4f1f2;
+      --paper: #ffffff;
+      --surface: #ffffff;
+      --ink: #1c1418;
+      --ink-2: #6a5d64;
+      --ink-3: #968990;
+      --line: rgba(43, 22, 34, .08);
+      --line-strong: rgba(43, 22, 34, .14);
+      --shadow: 0 10px 30px rgba(43, 22, 34, .06);
+      --shadow-lg: 0 22px 56px rgba(43, 22, 34, .12);
+      --radius: 16px;
+      --radius-lg: 22px;
+      --radius-pill: 999px;
+      --body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+      --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+      --mono: "SF Mono", ui-monospace, Menlo, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      background: #ece7e9;
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 14px;
+      letter-spacing: -.01em;
+      line-height: 1.6;
+    }
+    button, input, textarea, select { color: inherit; font: inherit; }
+    button { cursor: pointer; }
+    code { font-family: var(--mono); }
+
+    .stage { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+    .board {
+      align-items: center;
+      background: #f7f4f5;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      gap: 18px;
+      justify-content: space-between;
+      min-height: 56px;
+      padding: 8px 20px;
+    }
+    .board-left { align-items: baseline; display: flex; flex-wrap: wrap; gap: 12px; }
+    .board-left h1 { font-family: var(--display); font-size: 15px; font-weight: 650; letter-spacing: -.02em; }
+    .board-left p { color: var(--ink-3); font-size: 12px; }
+    .toggles {
+      background: rgba(43, 22, 34, .06);
+      border-radius: 12px;
+      display: flex;
+      gap: 2px;
+      padding: 3px;
+    }
+    .toggles button {
+      background: transparent;
+      border: 0;
+      border-radius: 10px;
+      color: var(--ink-2);
+      font-size: 13px;
+      font-weight: 600;
+      min-height: 32px;
+      padding: 6px 14px;
+    }
+    .toggles button.on {
+      background: var(--paper);
+      box-shadow: 0 1px 4px rgba(43, 22, 34, .10);
+      color: var(--ink);
+    }
+    .notes { color: var(--ink-3); font-size: 11.5px; max-width: 520px; text-align: right; }
+    .notes b { color: var(--accent); font-weight: 650; }
+
+    .frame-wrap { flex: 1; min-height: 0; overflow: auto; padding: 18px 18px 22px; }
+    .app {
+      background: var(--paper);
+      border: 1px solid var(--line-strong);
+      border-radius: 18px;
+      box-shadow: var(--shadow-lg);
+      display: grid;
+      grid-template-columns: 248px minmax(0, 1fr);
+      height: min(920px, calc(100vh - 110px));
+      margin: 0 auto;
+      max-width: 1440px;
+      min-height: 680px;
+      overflow: hidden;
+    }
+
+    .side {
+      background: rgba(255, 251, 252, .92);
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      padding: 20px 14px 16px;
+    }
+    .brand { align-items: center; display: flex; gap: 11px; padding: 2px 8px 20px; }
+    .brand img { border-radius: 50%; height: 38px; object-fit: cover; width: 38px; box-shadow: 0 6px 16px rgba(138, 23, 77, .16); }
+    .brand strong { display: block; font-size: 17px; font-weight: 600; letter-spacing: -.02em; }
+    .brand span { color: var(--ink-3); display: block; font-size: 11px; margin-top: 2px; }
+    .newchat {
+      background: var(--accent); border: 0; border-radius: 14px; color: white;
+      font-size: 14px; font-weight: 500; min-height: 40px; width: 100%;
+    }
+    .nav { flex: 1; margin-top: 18px; }
+    .nav-label { color: var(--ink-3); font-size: 11px; font-weight: 500; letter-spacing: .04em; margin: 18px 12px 8px; }
+    .nav a, .nav-group {
+      align-items: center; border-radius: 12px; color: var(--ink-2); display: flex;
+      font-size: 14px; gap: 11px; min-height: 40px; padding: 8px 12px; text-decoration: none;
+    }
+    .nav a.on, .nav-group.on { background: var(--accent-soft); color: var(--accent-dark); font-weight: 500; }
+    .nav svg { flex: 0 0 18px; height: 18px; width: 18px; }
+    .nav-sub { padding: 2px 0 4px 10px; }
+    .nav-sub a { font-size: 13.5px; min-height: 36px; }
+    .uarea { align-items: center; border-top: 1px solid var(--line); display: flex; gap: 8px; margin-top: 12px; padding: 14px 2px 0; }
+    .av { align-items: center; background: var(--accent-soft); border-radius: 50%; color: var(--accent-dark); display: flex; flex: 0 0 34px; font-size: 13px; font-weight: 700; height: 34px; justify-content: center; }
+    .un { display: block; font-size: 12.5px; font-weight: 650; }
+    .us { color: var(--ink-3); display: block; font-size: 11px; }
+
+    .main {
+      background:
+        radial-gradient(920px 420px at 82% -8%, rgba(196, 90, 134, .10), transparent 58%),
+        radial-gradient(720px 360px at 8% 108%, rgba(138, 23, 77, .06), transparent 52%),
+        var(--bg);
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .page { flex: 1; min-height: 0; overflow-y: auto; padding: 34px 30px 50px; }
+    .page-inner { margin: 0 auto; max-width: 1120px; }
+
+    .page-head { align-items: flex-end; display: flex; gap: 22px; justify-content: space-between; margin-bottom: 22px; }
+    .eyebrow { color: var(--accent); font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+    .page-head h1 { font-family: var(--display); font-size: 30px; font-weight: 650; letter-spacing: -.03em; line-height: 1.15; }
+    .page-head p { color: var(--ink-2); font-size: 13px; margin-top: 6px; max-width: 560px; }
+
+    .btn-p, .btn-g {
+      border: 1px solid transparent; border-radius: 12px; font-size: 13px; font-weight: 650;
+      min-height: 36px; padding: 7px 16px;
+    }
+    .btn-p { background: var(--accent); border-color: var(--accent); color: white; }
+    .btn-g { background: var(--surface); border-color: var(--line-strong); color: var(--ink); }
+    .btn-text { background: transparent; border: 0; border-radius: 8px; color: var(--accent); font-size: 12px; font-weight: 650; padding: 5px 7px; }
+    .btn-text.danger { color: var(--danger); }
+
+    .panel { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+    .status-badge { background: #eeeae6; border-radius: var(--radius-pill); color: var(--ink-2); display: inline-block; font-size: 11px; font-weight: 650; padding: 3px 8px; }
+    .status-badge.active { background: #e3f1eb; color: var(--success); }
+    .status-badge.disabled { background: #ece9e7; color: var(--ink-3); }
+    .status-badge.pending { background: #f7edda; color: var(--warning); }
+
+    .field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+    .field > span { color: var(--ink-2); font-size: 12px; font-weight: 600; }
+    .field em { color: var(--ink-3); font-size: 11px; font-style: normal; font-weight: 400; }
+    .field input, .field textarea, .field select {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      outline: 0; padding: 10px 12px; width: 100%;
+    }
+    .form-grid { display: grid; gap: 15px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .span-2 { grid-column: span 2; }
+    .form-actions { align-items: center; border-top: 1px solid var(--line); display: flex; gap: 9px; margin-top: 18px; padding-top: 15px; }
+    .panel-head { align-items: center; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; margin-bottom: 18px; padding-bottom: 13px; }
+    .panel-head > div > span, .panel-head > span { color: var(--ink-3); font-size: 12px; font-weight: 600; }
+    .panel-head h2 { font-size: 17px; font-weight: 650; letter-spacing: -.02em; margin-top: 3px; }
+    .security-note { background: #e3f1eb; border-radius: var(--radius-pill); color: var(--success); font-size: 12px; font-weight: 600; padding: 5px 9px; }
+
+    /* ===== Current (messy) ===== */
+    .current-form { margin-bottom: 20px; padding: 22px; }
+    .source-grid { display: grid; gap: 12px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .source-grid .span-2 { grid-column: span 2; }
+    .check-field { align-items: center; color: var(--ink-2); display: flex; font-size: 11px; gap: 8px; margin-top: 14px; }
+    .old-card { margin-bottom: 12px; overflow: hidden; }
+    .old-card > header { align-items: center; display: grid; gap: 13px; grid-template-columns: 40px 1fr auto; padding: 17px 19px; }
+    .db-icon {
+      align-items: center; background: var(--accent-soft); border-radius: 12px; color: var(--accent-dark);
+      display: flex; font-size: 11px; font-weight: 700; height: 38px; justify-content: center; width: 38px;
+    }
+    .old-card header h2 { font-size: 15px; }
+    .old-card header code { color: var(--ink-3); display: block; font-size: 9px; margin-top: 2px; }
+    .rev { border-left: 1px solid var(--line); padding-left: 20px; text-align: right; }
+    .rev span { color: var(--ink-3); display: block; font-size: 11px; }
+    .rev b { color: var(--accent); font-size: 18px; }
+    .stats { border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stats > div { border-right: 1px solid var(--line); padding: 11px 18px; }
+    .stats > div:last-child { border-right: 0; }
+    .stats span { color: var(--ink-3); display: block; font-size: 11px; font-weight: 600; }
+    .stats b { display: block; font-size: 13px; margin-top: 2px; }
+    .stats small { color: var(--ink-3); display: block; font-size: 9px; }
+    .old-card > footer { align-items: center; display: flex; flex-wrap: wrap; gap: 7px; padding: 12px 18px; }
+    .old-card > footer > span { color: var(--ink-3); font-size: 9px; margin-left: auto; }
+    .binding-panel { margin-top: 20px; padding: 22px; }
+    .binding-form { align-items: end; display: grid; gap: 11px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .binding-form textarea { min-height: 72px; }
+    .bind-row { align-items: center; border-bottom: 1px dotted var(--line); color: var(--ink-3); display: grid; font-size: 10px; gap: 8px; grid-template-columns: 90px 15px 90px 15px 1fr auto auto; padding: 8px 0; }
+    .bind-row b { color: var(--ink); }
+    .route { color: var(--accent); font: 700 10px var(--mono); }
+
+    /* ===== Proposed ===== */
+    .source-list { display: grid; gap: 14px; }
+    .source-card { display: grid; gap: 0; overflow: hidden; padding: 0; }
+    .source-card.on { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 20%, transparent); }
+    .source-top { display: flex; gap: 12px; padding: 16px 18px 14px; }
+    .source-title { min-width: 0; flex: 1; }
+    .source-title > div { align-items: center; display: flex; gap: 8px; }
+    .source-title h2 { font-size: 15px; margin: 0; }
+    .source-title code { color: var(--ink-2); display: block; font-size: 12px; margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .labs-block { background: #faf7f8; border-top: 1px solid var(--line); padding: 10px 12px 12px; }
+    .labs-head { align-items: center; color: var(--ink-3); display: flex; font-size: 11px; font-weight: 650; justify-content: space-between; padding: 2px 6px 8px; }
+    .lab-row {
+      align-items: center;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      display: grid;
+      gap: 10px;
+      grid-template-columns: 1fr auto auto;
+      margin-top: 6px;
+      padding: 10px 12px;
+    }
+    .lab-row b { display: block; font-size: 13px; font-weight: 650; }
+    .lab-row small { color: var(--ink-3); display: block; font-size: 11px; }
+    .lab-row .md-hit { color: var(--success); }
+    .token-chip { background: #e3f1eb; border-radius: var(--radius-pill); color: var(--success); font-size: 11px; font-weight: 650; padding: 4px 8px; }
+    .source-actions { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 18px 16px; }
+    .source-actions .meta { color: var(--ink-3); font-size: 11px; margin-left: auto; }
+
+    .model-form { margin-bottom: 16px; padding: 22px; }
+    details.advanced { margin-top: 14px; }
+    details.advanced summary { color: var(--ink-2); cursor: pointer; font-size: 12px; font-weight: 650; }
+    details.advanced .form-grid { margin-top: 12px; }
+
+    .lab-form { background: var(--paper); border: 1px dashed color-mix(in srgb, var(--accent) 35%, var(--line)); border-radius: 14px; margin-top: 8px; padding: 14px; }
+    .lab-form h3 { font-size: 14px; font-weight: 650; margin-bottom: 10px; }
+    .md-preview {
+      background: #f6f1f3;
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      color: var(--ink-2);
+      font-size: 12px;
+      margin: 10px 0 4px;
+      padding: 8px 10px;
+    }
+    .md-preview b { color: var(--ink); display: block; font-size: 12px; margin-bottom: 2px; }
+    .md-preview code { color: var(--accent); font-size: 11px; }
+    .md-miss { background: #fbf2e2; border-left-color: var(--warning); }
+
+    .scene-bar { align-items: center; display: none; gap: 8px; margin: -8px 0 16px; }
+    body[data-mode="proposed"] .scene-bar { display: flex; }
+    .scene-bar span { color: var(--ink-3); font-size: 12px; }
+    .scene-bar button {
+      background: transparent; border: 1px solid var(--line); border-radius: 999px;
+      color: var(--ink-2); font-size: 12px; font-weight: 600; min-height: 28px; padding: 3px 10px;
+    }
+    .scene-bar button.on { background: var(--accent-soft); border-color: transparent; color: var(--accent-dark); }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body data-mode="proposed">
+  <div class="stage">
+    <header class="board">
+      <div class="board-left">
+        <h1>数据源管理 · 设计稿</h1>
+        <p id="caption">方案：连接像模型页一样管；实验室只填名称和 Token。</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <p class="notes" id="notes"><b>已按你的两点收干净：</b>不展示任何版本；实验室只留名称 + Token，其余沿用本库默认，名称对 labs/*.md。</p>
+        <div class="toggles">
+          <button type="button" id="btn-current" onclick="show('current')">现在</button>
+          <button type="button" id="btn-proposed" class="on" onclick="show('proposed')">方案</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="frame-wrap">
+      <div class="app">
+        <aside class="side">
+          <div class="brand">
+            <img src="xiaoying.png" alt="小英" />
+            <div><strong>小英</strong><span>阿斯利康业务助手</span></div>
+          </div>
+          <button class="newchat" type="button">＋ 新对话</button>
+          <nav class="nav">
+            <div class="nav-label">工作台</div>
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6.5 6.2h11c1.3 0 2.3 1 2.3 2.3v6.1c0 1.3-1 2.3-2.3 2.3h-5.1L8.2 20.2v-3.3H6.5c-1.3 0-2.3-1-2.3-2.3V8.5c0-1.3 1-2.3 2.3-2.3Z"/><path d="M9 10.4h6.2M9 13.3h4"/></svg>
+              和小英聊
+            </a>
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7.2 4.6h9.6c.8 0 1.4.6 1.4 1.4V19l-6.2-3.1L5.8 19V6c0-.8.6-1.4 1.4-1.4Z"/></svg>
+              个人记忆
+            </a>
+            <div class="nav-label">管理员</div>
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="7.4"/><path d="m8.8 12.2 2.1 2.1 4.4-4.6"/></svg>
+              知识审核
+            </a>
+            <a class="on" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><ellipse cx="12" cy="7" rx="6.4" ry="2.4"/><path d="M5.6 7v5c0 1.3 2.9 2.4 6.4 2.4s6.4-1.1 6.4-2.4V7"/><path d="M5.6 12v5c0 1.3 2.9 2.4 6.4 2.4s6.4-1.1 6.4-2.4v-5"/></svg>
+              数据源
+            </a>
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5.4" y="5.4" width="13.2" height="13.2" rx="3"/></svg>
+              模型管理
+            </a>
+          </nav>
+          <div class="uarea">
+            <span class="av">管</span>
+            <span><span class="un">管理员</span><span class="us">admin</span></span>
+          </div>
+        </aside>
+
+        <div class="main">
+          <div class="page">
+            <div class="page-inner">
+
+              <!-- CURRENT -->
+              <div id="view-current">
+                <header class="page-head">
+                  <div>
+                    <div class="eyebrow">管理</div>
+                    <h1>数据源管理</h1>
+                    <p>凭证只写入服务端密钥仓；测试通过后激活不可变版本，再绑定到业务域。</p>
+                  </div>
+                  <button class="btn-p" type="button">＋ 新建数据源</button>
+                </header>
+
+                <form class="panel current-form">
+                  <div class="panel-head"><div><span>草稿</span><h2>新建数据源</h2></div><span class="security-note">密码不会回显</span></div>
+                  <div class="source-grid">
+                    <label class="field"><span>名称</span><input value="销售分析 PostgreSQL" /></label>
+                    <label class="field"><span>数据库类型</span><select><option>PostgreSQL</option></select></label>
+                    <label class="field span-2"><span>连接 URL <em>禁止 query 参数</em></span><input value="postgresql://db.internal:5432" /></label>
+                    <label class="field"><span>账号</span><input value="readonly" /></label>
+                    <label class="field"><span>密码</span><input type="password" value="********" /></label>
+                    <label class="field"><span>数据库</span><input value="analytics" /></label>
+                    <label class="field"><span>TLS 模式</span><select><option>require</option></select></label>
+                    <label class="field"><span>Schema</span><input value="public" /></label>
+                    <label class="field"><span>允许对象 <em>换行分隔</em></span><textarea rows="3">sales.monthly_actual</textarea></label>
+                    <label class="field"><span>允许 Schema</span><textarea rows="3">sales</textarea></label>
+                    <label class="field"><span>查询超时（秒）</span><input value="15" /></label>
+                    <label class="field"><span>最大返回行数</span><input value="2000" /></label>
+                  </div>
+                  <label class="check-field"><input type="checkbox" /> 允许访问内网地址</label>
+                  <div class="form-actions"><button class="btn-p" type="button">保存草稿</button><button class="btn-g" type="button">取消</button></div>
+                </form>
+
+                <article class="panel old-card">
+                  <header>
+                    <div class="db-icon">库</div>
+                    <div>
+                      <div style="align-items:center;display:flex;gap:8px">
+                        <h2>销售分析 PostgreSQL</h2>
+                        <span class="status-badge active">已启用</span>
+                      </div>
+                      <code>postgresql://db.internal:5432</code>
+                    </div>
+                    <div class="rev"><span>当前</span><b>r3</b></div>
+                  </header>
+                  <div class="stats">
+                    <div><span>数据库</span><b>analytics</b><small>public</small></div>
+                    <div><span>凭证</span><b>已配置</b><small>readonly</small></div>
+                    <div><span>护栏</span><b>15s / 2000 行</b><small>TLS require · 允许内网</small></div>
+                    <div><span>版本</span><b>3</b><small>不可变历史</small></div>
+                  </div>
+                  <footer>
+                    <button class="btn-g" type="button">测试连接</button>
+                    <button class="btn-g" type="button">编辑草稿</button>
+                    <button class="btn-g" type="button">轮换密码</button>
+                    <button class="btn-p" type="button">激活新版本</button>
+                    <button class="btn-text danger" type="button">停用</button>
+                    <span>更新于 8月26日</span>
+                  </footer>
+                </article>
+
+                <section class="panel binding-panel">
+                  <div class="panel-head"><div><span>路由</span><h2>域与实验室绑定</h2></div><span>仅能绑定激活数据源的当前版本</span></div>
+                  <div class="binding-form">
+                    <label class="field"><span>Domain ID</span><select><option>actual</option></select></label>
+                    <label class="field"><span>Lab ID</span><select disabled><option>actual</option></select></label>
+                    <label class="field"><span>激活数据源</span><select><option>销售分析 PostgreSQL · r3</option></select></label>
+                    <label class="field"><span>Revision</span><select><option>r3 · a1b2c3d4</option></select></label>
+                    <label class="field"><span>域允许对象 <em>必须是 Revision 子集</em></span><textarea>sales.monthly_actual</textarea></label>
+                    <label class="field"><span>域允许 Schema</span><textarea>sales</textarea></label>
+                    <label class="field"><span>域允许 Join Key</span><textarea>sales.orders.customer_id=sales.customers.id</textarea></label>
+                    <button class="btn-p" type="button">建立绑定</button>
+                  </div>
+                  <div class="bind-row"><span class="route">actual</span><span>→</span><span class="route">actual</span><span>→</span><b>销售分析 PostgreSQL</b><code>a1b2c3d4ef · 12 obj</code><span class="status-badge active">已启用</span></div>
+                  <div class="bind-row"><span class="route">demand</span><span>→</span><span class="route">demand</span><span>→</span><b>销售分析 PostgreSQL</b><code>a1b2c3d4ef · 12 obj</code><span class="status-badge active">已启用</span></div>
+                </section>
+              </div>
+
+              <!-- PROPOSED -->
+              <div id="view-proposed">
+                <header class="page-head">
+                  <div>
+                    <div class="eyebrow">管理</div>
+                    <h1>数据源</h1>
+                    <p>先接上数据库，再给实验室一个名称和 Token。白名单、超时、连接都沿用本库，不用再填一遍。</p>
+                  </div>
+                  <button class="btn-p" type="button" onclick="scene('form')">＋ 新建数据源</button>
+                </header>
+
+                <div class="scene-bar">
+                  <span>看状态</span>
+                  <button type="button" id="sc-list" class="on" onclick="scene('list')">列表</button>
+                  <button type="button" id="sc-form" onclick="scene('form')">新建库</button>
+                  <button type="button" id="sc-lab" onclick="scene('lab')">添加实验室</button>
+                </div>
+
+                <form id="new-form" class="panel model-form hidden">
+                  <div class="panel-head"><div><span>连接</span><h2>新建数据源</h2></div><span class="security-note">密码不会回显</span></div>
+                  <div class="form-grid">
+                    <label class="field"><span>名称</span><input placeholder="销售分析库" value="销售分析库" /></label>
+                    <label class="field"><span>数据库类型</span>
+                      <select><option>PostgreSQL</option><option>MySQL</option><option>SQLite</option></select>
+                    </label>
+                    <label class="field span-2"><span>连接地址</span><input placeholder="postgresql://db.internal:5432" value="postgresql://db.internal:5432" /></label>
+                    <label class="field"><span>账号</span><input placeholder="只读账号" value="readonly" /></label>
+                    <label class="field"><span>密码</span><input type="password" placeholder="数据库密码" /></label>
+                    <label class="field"><span>数据库</span><input placeholder="analytics" value="analytics" /></label>
+                    <label class="field"><span>Schema</span><input placeholder="public" value="public" /></label>
+                  </div>
+                  <details class="advanced">
+                    <summary>限额与安全 · 有默认值，一般不用改</summary>
+                    <div class="form-grid">
+                      <label class="field"><span>TLS</span><select><option>require</option><option>disable</option></select></label>
+                      <label class="field"><span>查询超时（秒）</span><input value="15" /></label>
+                      <label class="field"><span>最大返回行数</span><input value="2000" /></label>
+                      <label class="field"><span>允许内网</span><select><option>否</option><option>是</option></select></label>
+                    </div>
+                  </details>
+                  <div class="form-actions">
+                    <button class="btn-p" type="button">保存并测试</button>
+                    <button class="btn-g" type="button" onclick="scene('list')">取消</button>
+                    <span>保存后即可添加实验室，不再走草稿 / 版本。</span>
+                  </div>
+                </form>
+
+                <section class="source-list">
+                  <article class="panel source-card on">
+                    <div class="source-top">
+                      <div class="db-icon">PG</div>
+                      <div class="source-title">
+                        <div>
+                          <h2>销售分析库</h2>
+                          <span class="status-badge active">已启用</span>
+                        </div>
+                        <code>PostgreSQL · analytics · public</code>
+                      </div>
+                    </div>
+                    <div class="labs-block">
+                      <div class="labs-head">
+                        <span>实验室 · 名称对应 labs/*.md</span>
+                        <button class="btn-text" type="button" onclick="scene('lab')">＋ 添加实验室</button>
+                      </div>
+                      <div class="lab-row">
+                        <div>
+                          <b>Actual</b>
+                          <small class="md-hit">已匹配 labs/actual.md · 内部开票实际销售与指标达成</small>
+                        </div>
+                        <span class="token-chip">Token 已配置</span>
+                        <button class="btn-text" type="button">更换</button>
+                      </div>
+                      <div class="lab-row">
+                        <div>
+                          <b>Demand</b>
+                          <small class="md-hit">已匹配 labs/demand.md · 内部一级商出货 / 流向</small>
+                        </div>
+                        <span class="token-chip">Token 已配置</span>
+                        <button class="btn-text" type="button">更换</button>
+                      </div>
+                      <form id="lab-form" class="lab-form hidden">
+                        <h3>添加到「销售分析库」</h3>
+                        <div class="form-grid">
+                          <label class="field"><span>名称</span>
+                            <select id="lab-name" onchange="onLabName()">
+                              <option value="ext_simple">外部市场·简单</option>
+                              <option value="ext_complex">外部市场·复杂</option>
+                              <option value="custom">自定义…</option>
+                            </select>
+                          </label>
+                          <label class="field" id="lab-custom-wrap" style="display:none"><span>自定义名称</span><input id="lab-custom" placeholder="与 md 文件名或标题一致" oninput="onLabName()" /></label>
+                          <label class="field span-2"><span>Token</span><input type="password" placeholder="实验室调用凭证，保存后不回显" /></label>
+                        </div>
+                        <div class="md-preview" id="lab-preview">
+                          <b>外部市场·简单</b>
+                          对应 <code>labs/外部市场-简单.md</code> · 外部点值 / 变化量 / 贡献。连接、白名单、超时沿用本库。
+                        </div>
+                        <div class="form-actions" style="border:0;margin-top:10px;padding-top:0">
+                          <button class="btn-p" type="button">保存</button>
+                          <button class="btn-g" type="button" onclick="scene('list')">取消</button>
+                          <span>只填这两项。</span>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="source-actions">
+                      <button class="btn-g" type="button">测试连接</button>
+                      <button class="btn-g" type="button">编辑</button>
+                      <button class="btn-text danger" type="button">停用</button>
+                      <span class="meta">更新于 8月26日</span>
+                    </div>
+                  </article>
+
+                  <article class="panel source-card">
+                    <div class="source-top">
+                      <div class="db-icon">PG</div>
+                      <div class="source-title">
+                        <div>
+                          <h2>外部市场库</h2>
+                          <span class="status-badge active">已启用</span>
+                        </div>
+                        <code>PostgreSQL · ext_market · public</code>
+                      </div>
+                    </div>
+                    <div class="labs-block">
+                      <div class="labs-head">
+                        <span>实验室 · 名称对应 labs/*.md</span>
+                        <button class="btn-text" type="button">＋ 添加实验室</button>
+                      </div>
+                      <div class="lab-row">
+                        <div>
+                          <b>外部市场·简单</b>
+                          <small class="md-hit">已匹配 labs/外部市场-简单.md · 外部点值 / 变化量 / 贡献</small>
+                        </div>
+                        <span class="token-chip">Token 已配置</span>
+                        <button class="btn-text" type="button">更换</button>
+                      </div>
+                      <div class="lab-row">
+                        <div>
+                          <b>外部市场·复杂</b>
+                          <small class="md-hit">已匹配 labs/外部市场-复杂.md · 外部增速 / 指数 / 环比</small>
+                        </div>
+                        <span class="token-chip">Token 已配置</span>
+                        <button class="btn-text" type="button">更换</button>
+                      </div>
+                    </div>
+                    <div class="source-actions">
+                      <button class="btn-g" type="button">测试连接</button>
+                      <button class="btn-g" type="button">编辑</button>
+                      <button class="btn-text danger" type="button">停用</button>
+                      <span class="meta">更新于 8月20日</span>
+                    </div>
+                  </article>
+                </section>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const LAB_DOCS = {
+      ext_simple: {
+        title: "外部市场·简单",
+        file: "labs/外部市场-简单.md",
+        blurb: "外部点值 / 变化量 / 贡献。连接、白名单、超时沿用本库。",
+        ok: true,
+      },
+      ext_complex: {
+        title: "外部市场·复杂",
+        file: "labs/外部市场-复杂.md",
+        blurb: "外部增速 / 指数 / 环比。连接、白名单、超时沿用本库。",
+        ok: true,
+      },
+    };
+
+    function show(mode) {
+      const isProposed = mode === "proposed";
+      document.body.dataset.mode = mode;
+      document.getElementById("view-current").classList.toggle("hidden", isProposed);
+      document.getElementById("view-proposed").classList.toggle("hidden", !isProposed);
+      document.getElementById("btn-current").classList.toggle("on", !isProposed);
+      document.getElementById("btn-proposed").classList.toggle("on", isProposed);
+      document.getElementById("caption").textContent = isProposed
+        ? "方案：连接像模型页一样管；实验室只填名称和 Token。"
+        : "现状：13 个字段、版本号、Domain / Lab / Revision / 白名单全部摊在一页。";
+      document.getElementById("notes").innerHTML = isProposed
+        ? "<b>已按你的两点收干净：</b>不展示任何版本；实验室只留名称 + Token，其余沿用本库默认，名称对 labs/*.md。"
+        : "<b>对照：</b>现在的页面把连接、版本、域绑定、对象白名单揉在一起。";
+      if (isProposed) scene("list");
+    }
+
+    function scene(name) {
+      document.getElementById("new-form").classList.toggle("hidden", name !== "form");
+      document.getElementById("lab-form").classList.toggle("hidden", name !== "lab");
+      document.getElementById("sc-list").classList.toggle("on", name === "list");
+      document.getElementById("sc-form").classList.toggle("on", name === "form");
+      document.getElementById("sc-lab").classList.toggle("on", name === "lab");
+      if (name === "lab") onLabName();
+    }
+
+    function onLabName() {
+      const select = document.getElementById("lab-name");
+      const customWrap = document.getElementById("lab-custom-wrap");
+      const preview = document.getElementById("lab-preview");
+      const isCustom = select.value === "custom";
+      customWrap.style.display = isCustom ? "" : "none";
+      if (!isCustom) {
+        const doc = LAB_DOCS[select.value];
+        preview.className = "md-preview";
+        preview.innerHTML = "<b>" + doc.title + "</b>对应 <code>" + doc.file + "</code> · " + doc.blurb;
+        return;
+      }
+      const typed = document.getElementById("lab-custom").value.trim();
+      if (!typed) {
+        preview.className = "md-preview md-miss";
+        preview.innerHTML = "<b>自定义实验室</b>名称需与 <code>labs/</code> 下文档的标题或文件名对应，例如「Actual」对应 <code>labs/actual.md</code>。";
+        return;
+      }
+      preview.className = "md-preview md-miss";
+      preview.innerHTML = "<b>" + typed + "</b>未找到对应文档。请先在 <code>labs/" + typed + ".md</code> 写好描述，保存后会按名称自动匹配。";
+    }
+
+    const initial = new URLSearchParams(location.search).get("mode") === "current" ? "current" : "proposed";
+    show(initial);
+    const sc = new URLSearchParams(location.search).get("scene");
+    if (initial === "proposed" && sc) scene(sc);
+  </script>
+</body>
+</html>

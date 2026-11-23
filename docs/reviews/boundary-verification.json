@@ -1,0 +1,14 @@
+{
+  "review_date": "2026-10-22",
+  "source_directory": "/Users/shaox/Desktop/强生",
+  "read_only_snapshot_files": 1164,
+  "changed_since_user_boundary_instruction": [
+    "平台端代码/backend/app/services/autobi/lab_pipeline_runner.py",
+    "平台端代码/frontend/src/pages/AutoBIList.vue",
+    "平台端代码/frontend/src/utils/autobiLabPipelineReal.js",
+    "平台端代码/frontend/src/utils/autobiPayload.js"
+  ],
+  "missing_since_snapshot": [],
+  "task_code_write_root": "/Users/shaox/Desktop/吉利德/ReAct",
+  "original_jnj_code_modified_by_this_task": false
+}

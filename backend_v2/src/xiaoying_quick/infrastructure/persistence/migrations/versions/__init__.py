@@ -1,0 +1,1 @@
+"""Quick application database revisions."""

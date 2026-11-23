@@ -1,0 +1,35 @@
+.chart-data { margin-top: 18px; border: 1px solid var(--line); border-radius: 11px; overflow: hidden; }
+.chart-data-head { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--bg); }
+.chart-data-head > div { display: flex; align-items: center; gap: 10px; flex: 1; }
+.chart-data-head h4 { margin: 0; font-size: 12px; font-weight: 600; }
+.chart-data-head span { font-size: 9px; color: var(--ink-3); }
+.chart-data-head > button, .chart-data-head :slotted(button) {
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font: 10px var(--body-font);
+  padding: 3px 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.chart-data-scroll { overflow: auto; max-height: 390px; }
+.chart-data table { border-collapse: collapse; min-width: 100%; white-space: nowrap; font-size: 11px; text-align: left; }
+.chart-data th { background: #fafafb; font-weight: 500; position: sticky; top: 0; }
+.chart-data th, .chart-data td { padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.chart-data th button { border: 0; background: transparent; font: inherit; color: var(--ink-2); padding: 0; cursor: pointer; }
+.chart-data td { color: var(--ink); font-variant-numeric: tabular-nums; }
+.chart-data td.numeric { text-align: right; }
+.chart-data tbody tr:nth-child(even) { background: #fcfcfd; }
+.chart-data-footer { display: flex; align-items: center; gap: 14px; padding: 9px 13px; }
+.chart-data-footer p { color: var(--ink-3); font-size: 9px; line-height: 1.7; margin: 0; flex: 1; }
+.chart-data-footer > div { display: flex; align-items: center; gap: 9px; font-size: 10px; white-space: nowrap; }
+.chart-data-footer button { border: 1px solid var(--line); background: var(--paper); color: var(--ink-2); border-radius: 5px; height: 23px; width: 23px; cursor: pointer; }
+.chart-data-footer button:disabled { opacity: 0.3; cursor: default; }
+.chart-data-head .table-pin { border: 1px solid var(--line-strong); border-radius: 7px; padding: 5px 8px; background: var(--paper); }
+.chart-data :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+@media (max-width: 700px) {
+  .chart-data-head { flex-wrap: wrap; gap: 9px; padding: 11px; }
+  .chart-data-head > div { min-width: 100%; }
+  .chart-data th, .chart-data td { padding: 9px 11px; }
+}

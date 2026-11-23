@@ -1,0 +1,3579 @@
+{
+  "id": "pharma-moc-2026-demo-v1",
+  "name": "医药 MOC 经营看板",
+  "description": "2026年1—10月 · 10城市 · 10万条医药模拟数据，金额、销量、目标达成与城市渠道下钻；内置模拟数据看板",
+  "theme": "commercial",
+  "items": [
+    {
+      "fingerprint": "abd18c0a4cfe72e139e25b8f4b1feb1f961fd366315d1abf518b35a05b7c3058",
+      "title": "2026年1—10月经营表现：销售金额、目标、销量、达成率与同比",
+      "kind": "chart",
+      "width": "full",
+      "source": {
+        "kind": "template",
+        "template_id": "pharma-moc-2026-demo-v1",
+        "chatbot_id": "xlsx",
+        "chatbot_name": "XLSX 问数助手",
+        "sample": true,
+        "scope": {
+          "label": "2026年1—10月，10城市全部渠道与终端；金额单位元，数量单位盒；同比对比2025年1—10月同月"
+        }
+      },
+      "snapshot": {
+        "charts": [
+          {
+            "type": "combo",
+            "label": "柱线复合",
+            "option": {
+              "color": [
+                "#C5203F",
+                "#3FB9C2",
+                "#128A89",
+                "#77A5B3",
+                "#64748B",
+                "#94A3B8",
+                "#0F766E",
+                "#D97706"
+              ],
+              "textStyle": {
+                "fontFamily": "Avenir Next, 'Helvetica Neue', -apple-system, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif",
+                "color": "#475569"
+              },
+              "animation": true,
+              "animationDuration": 720,
+              "animationEasing": "cubicOut",
+              "animationDurationUpdate": 360,
+              "animationEasingUpdate": "cubicInOut",
+              "title": {
+                "text": "2026年1—10月经营表现：销售金额、目标、销量、达成率与同比",
+                "left": "left",
+                "top": 4,
+                "padding": [
+                  4,
+                  0,
+                  0,
+                  4
+                ],
+                "textStyle": {
+                  "fontSize": 15,
+                  "fontWeight": 600,
+                  "color": "#0F172A",
+                  "fontFamily": "Avenir Next, 'Helvetica Neue', -apple-system, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif"
+                }
+              },
+              "tooltip": {
+                "backgroundColor": "rgba(255, 255, 255, 0.96)",
+                "borderColor": "rgba(148, 163, 184, 0.28)",
+                "borderWidth": 1,
+                "padding": [
+                  12,
+                  16
+                ],
+                "textStyle": {
+                  "color": "#334155",
+                  "fontSize": 12,
+                  "fontFamily": "Avenir Next, 'Helvetica Neue', -apple-system, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif"
+                },
+                "extraCssText": "border-radius:12px;box-shadow:0 8px 24px rgba(15,23,42,.08);backdrop-filter:blur(6px);",
+                "trigger": "axis",
+                "renderMode": "richText",
+                "confine": true
+              },
+              "grid": {
+                "left": 28,
+                "right": 145,
+                "top": 95,
+                "bottom": 55,
+                "containLabel": true
+              },
+              "legend": {
+                "orient": "horizontal",
+                "bottom": null,
+                "left": "center",
+                "icon": "circle",
+                "itemWidth": 8,
+                "itemHeight": 8,
+                "itemGap": 14,
+                "type": "scroll",
+                "textStyle": {
+                  "color": "#64748B",
+                  "fontSize": 11,
+                  "fontFamily": "Avenir Next, 'Helvetica Neue', -apple-system, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif"
+                },
+                "pageIconColor": "#C5203F",
+                "pageTextStyle": {
+                  "color": "#94A3B8"
+                },
+                "top": 38,
+                "width": "94%"
+              },
+              "yAxis": [
+                {
+                  "type": "value",
+                  "axisLabel": {
+                    "color": "#94A3B8",
+                    "fontSize": 11,
+                    "fontFamily": "Avenir Next, 'Helvetica Neue', -apple-system, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif"
+                  },
+                  "axisLine": {
+                    "show": false
+                  },
+                  "axisTick": {
+                    "show": false
+                  },
+                  "splitLine": {
+                    "show": true,
+                    "lineStyle": {
+                      "color": "rgba(148, 163, 184, 0.22)",
+                      "width": 1,
+                      "type": "dashed"
+                    }
+                  },
+                  "splitNumber": 4,
+                  "name": "元",
+                  "position": "left",
+                  "offset": 0
+                },
+                {
+                  "type": "value",
+                  "axisLabel": {
+                    "color": "#94A3B8",
+                    "fontSize": 11,
+                    "fontFamily": "Avenir Next, 'Helvetica Neue', -apple-system, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif"
+                  },
+                  "axisLine": {
+                    "show": false
+                  },
+                  "axisTick": {
+                    "show": false
+                  },
+                  "splitLine": {
+                    "show": false
+                  },
+                  "splitNumber": 4,
+                  "name": "盒",
+                  "position": "right",
+                  "offset": 0
+                },
+                {
+                  "type": "value",
+                  "axisLabel": {
+                    "color": "#94A3B8",
+                    "fontSize": 11,
+                    "fontFamily": "Avenir Next, 'Helvetica Neue', -apple-system, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif",
+                    "formatter": "{value}%"
+                  },
+                  "axisLine": {
+                    "show": false
+                  },
+                  "axisTick": {
+                    "show": false
+                  },
+                  "splitLine": {
+                    "show": false
+                  },
+                  "splitNumber": 4,
+                  "name": "%",
+                  "position": "right",
+                  "offset": 65
+                }
+              ],
+              "xAxis": {
+                "type": "category",
+                "data": [
+                  "01",
+                  "02",
+                  "03",
+                  "04",
+                  "05",
+                  "06",
+                  "07",
+                  "08",
+                  "09",
+                  "10"
+                ],
+                "axisLabel": {
+                  "color": "#94A3B8",
+                  "fontSize": 11,
+                  "fontFamily": "Avenir Next, 'Helvetica Neue', -apple-system, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif",
+                  "interval": 0,
+                  "rotate": 28,
+                  "hideOverlap": true
+                },
+                "axisLine": {
+                  "show": false
+                },
+                "axisTick": {
+                  "show": false
+                }
+              },
+              "series": [
+                {
+                  "name": "销售金额",
+                  "type": "bar",
+                  "yAxisIndex": 0,
+                  "data": [
+                    35975344.6,
+                    35952988.01,
+                    33525426.09,
+                    33612641.07,
+                    33570216.84,
+                    34251806.74,
+                    34168057.0,
+                    34631919.67,
+                    35791160.85,
+                    35685180.99
+                  ],
+                  "barMaxWidth": 30,
+                  "smooth": false,
+                  "connectNulls": false,
+                  "symbolSize": 6,
+                  "emphasis": {
+                    "focus": "series"
+                  },
+                  "label": {
+                    "show": false,
+                    "formatter": "{c}"
+                  }
+                },
+                {
+                  "name": "目标金额",
+                  "type": "bar",
+                  "yAxisIndex": 0,
+                  "data": [
+                    37261661.65,
+                    37319835.03,
+                    34659063.1,
+                    34692969.54,
+                    34774641.92,
+                    34401153.95,
+                    35380477.61,
+                    35818751.23,
+                    36990542.06,
+                    36779930.93
+                  ],
+                  "barMaxWidth": 30,
+                  "smooth": false,
+                  "connectNulls": false,
+                  "symbolSize": 6,
+                  "emphasis": {
+                    "focus": "series"
+                  },
+                  "label": {
+                    "show": false,
+                    "formatter": "{c}"
+                  }
+                },
+                {
+                  "name": "销售数量",
+                  "type": "bar",
+                  "yAxisIndex": 1,
+                  "data": [
+                    777613.0,
+                    782229.0,
+                    722050.0,
+                    723854.0,
+                    727248.0,
+                    737142.0,
+                    736542.0,
+                    742531.0,
+                    766954.0,
+                    755104.0
+                  ],
+                  "barMaxWidth": 30,
+                  "smooth": false,
+                  "connectNulls": false,
+                  "symbolSize": 6,
+                  "emphasis": {
+                    "focus": "series"
+                  },
+                  "label": {
+                    "show": false,
+                    "formatter": "{c}"
+                  }
+                },
+                {
+                  "name": "达成率",
+                  "type": "line",
+                  "yAxisIndex": 2,
+                  "data": [
+                    96.547881,
+                    96.337478,
+                    96.729176,
+                    96.886031,
+                    96.536485,
+                    99.565866,
+                    96.573193,
+                    96.686564,
+                    96.7576,
+                    97.023513
+                  ],
+                  "barMaxWidth": 30,
+                  "smooth": false,
+                  "connectNulls": false,
+                  "symbolSize": 6,
+                  "emphasis": {
+                    "focus": "series"
+                  },
+                  "label": {
+                    "show": false,
+                    "formatter": "{c}%"
+                  },
+                  "markLine": {
+                    "silent": true,
+                    "symbol": "none",
+                    "data": [
+                      {
+                        "yAxis": 100
+                      }
+                    ],
+                    "label": {
+                      "formatter": "目标 100%"
+                    },
+                    "lineStyle": {
+                      "type": "dashed",
+                      "color": "#a7a9b3"
+                    }
+                  }
+                },
+                {
+                  "name": "销售额同比",
+                  "type": "line",
+                  "yAxisIndex": 2,
+                  "data": [
+                    8.485468,
+                    7.961466,
+                    8.566529,
+                    8.779504,
+                    7.457951,
+                    7.369672,
+                    6.409146,
+                    6.103517,
+                    6.267855,
+                    6.783735
+                  ],
+                  "barMaxWidth": 30,
+                  "smooth": false,
+                  "connectNulls": false,
+                  "symbolSize": 6,
+                  "emphasis": {
+                    "focus": "series"
+                  },
+                  "label": {
+                    "show": false,
+                    "formatter": "{c}%"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "default_type": "combo",
+        "version": 2,
+        "scope": "2026年1—10月，10城市全部渠道与终端；金额单位元，数量单位盒；同比对比2025年1—10月同月",
+        "kpis": [
+          {
+            "label": "销售金额",
+            "value": 347164741.86,
+            "unit": "元",
+            "note": "当前查询范围"
+          },
+          {
+            "label": "目标金额",
+            "value": 358079027.02,
+            "unit": "元",
+            "note": "当前查询范围"
+          },
+          {
+            "label": "销售数量",
+            "value": 7471267.0,
+            "unit": "盒",
+            "note": "当前查询范围"
+          },
+          {
+            "label": "达成率",
+            "value": 0.9695198983005772,
+            "unit": "%",
+            "note": "当前查询范围"
+          },
+          {
+            "label": "销售额同比",
+            "value": 0.07404104540720087,
+            "unit": "%",
+            "note": "当前查询范围"
+          },
+          {
+            "label": "去重终端数",
+            "value": 400.0,
+            "unit": "家",
+            "note": "当前查询范围"
+          },
+          {
+            "label": "记录数",
+            "value": 45400.0,
+            "unit": "条",
+            "note": "当前查询范围"
+          }
+        ],
+        "metrics": [
+          {
+            "column": "销售金额",
+            "unit": "元",
+            "chart": "bar",
+            "aggregate": "sum",
+            "numerator": null,
+            "denominator": null,
+            "scale": "fraction"
+          },
+          {
+            "column": "目标金额",
+            "unit": "元",
+            "chart": "bar",
+            "aggregate": "sum",
+            "numerator": null,
+            "denominator": null,
+            "scale": "fraction"
+          },
+          {
+            "column": "销售数量",
+            "unit": "盒",
+            "chart": "bar",
+            "aggregate": "sum",
+            "numerator": null,
+            "denominator": null,
+            "scale": "fraction"
+          },
+          {
+            "column": "达成率",
+            "unit": "%",
+            "chart": "line",
+            "aggregate": "ratio",
+            "numerator": "销售金额",
+            "denominator": "目标金额",
+            "scale": "fraction"
+          },
+          {
+            "column": "销售额同比",
+            "unit": "%",
+            "chart": "line",
+            "aggregate": "growth",
+            "numerator": "销售金额",
+            "denominator": "同期销售金额",
+            "scale": "fraction"
+          }
+        ],
+        "warnings": [],
+        "details": {
+          "columns": [
+            "月份",
+            "销售金额",
+            "目标金额",
+            "销售数量",
+            "毛利额",
+            "推广费用",
+            "达成率",
+            "同期销售金额",
+            "销售额同比"
+          ],
+          "rows": [
+            [
+              "01",
+              35975344.6,
+              37261661.65,
+              777613.0,
+              18101326.19,
+              2318307.29,
+              0.9654788060156196,
+              33161441.24,
+              0.08485467623782939
+            ],
+            [
+              "02",
+              35952988.01,
+              37319835.03,
+              782229.0,
+              18139226.71,
+              2312088.11,
+              0.9633747839747617,
+              33301685.71,
+              0.07961465744071479
+            ],
+            [
+              "03",
+              33525426.09,
+              34659063.1,
+              722050.0,
+              16888597.26,
+              2315137.07,
+              0.9672917583857019,
+              30880075.41,
+              0.08566529209780838
+            ],
+            [
+              "04",
+              33612641.07,
+              34692969.54,
+              723854.0,
+              16943276.61,
+              2173518.65,
+              0.9688603055799415,
+              30899792.48,
+              0.08779504236981205
+            ],
+            [
+              "05",
+              33570216.84,
+              34774641.92,
+              727248.0,
+              16951584.32,
+              2190650.39,
+              0.9653648459480673,
+              31240328.39,
+              0.074579512126569
+            ],
+            [
+              "06",
+              34251806.74,
+              34401153.95,
+              737142.0,
+              17236324.0,
+              2463089.06,
+              0.9956586569678137,
+              31900820.81,
+              0.07369672222549949
+            ],
+            [
+              "07",
+              34168057.0,
+              35380477.61,
+              736542.0,
+              17227891.19,
+              2260578.75,
+              0.9657319320738248,
+              32110075.51,
+              0.06409145594687511
+            ],
+            [
+              "08",
+              34631919.67,
+              35818751.23,
+              742531.0,
+              17417426.46,
+              2298161.6,
+              0.9668656354773764,
+              32639747.23,
+              0.061035167520199
+            ],
+            [
+              "09",
+              35791160.85,
+              36990542.06,
+              766954.0,
+              17968645.21,
+              2576059.07,
+              0.9675760033996106,
+              33680138.56,
+              0.06267855122505764
+            ],
+            [
+              "10",
+              35685180.99,
+              36779930.93,
+              755104.0,
+              17834590.81,
+              2357061.63,
+              0.9702351278994097,
+              33418180.19,
+              0.06783735042156408
+            ]
+          ],
+          "row_count": 10,
+          "preview_truncated": false,
+          "query_truncated": false,
+          "formats": {
+            "销售金额": {
+              "unit": "元",
+              "percent": false,
+              "scale": "fraction"
+            },
+            "目标金额": {
+              "unit": "元",
+              "percent": false,
+              "scale": "fraction"
+            },
+            "销售数量": {
+              "unit": "盒",
+              "percent": false,
+              "scale": "fraction"
+            },
+            "达成率": {
+              "unit": "%",
+              "percent": true,
+              "scale": "fraction"
+            },
+            "销售额同比": {
+              "unit": "%",
+              "percent": true,
+              "scale": "fraction"
+            }
+          }
+        },
+        "data": {
+          "columns": [
+            "月份",
+            "销售金额",
+            "目标金额",
+            "销售数量",
+            "达成率",
+            "销售额同比"
+          ],
+          "rows": [
+            [
+              "01",
+              35975344.6,
+              37261661.65,
+              777613.0,
+              0.9654788060156196,
+              0.08485467623782927
+            ],
+            [
+              "02",
+              35952988.01,
+              37319835.03,
+              782229.0,
+              0.9633747839747617,
+              0.07961465744071483
+            ],
+            [
+              "03",
+              33525426.09,
+              34659063.1,
+              722050.0,
+              0.9672917583857019,
+              0.08566529209780827
+            ],
+            [
+              "04",
+              33612641.07,
+              34692969.54,
+              723854.0,
+              0.9688603055799415,
+              0.08779504236981195
+            ],
+            [
+              "05",
+              33570216.84,
+              34774641.92,
+              727248.0,
+              0.9653648459480673,
+              0.0745795121265691
+            ],
+            [
+              "06",
+              34251806.74,
+              34401153.95,
+              737142.0,
+              0.9956586569678137,
+              0.07369672222549939
+            ],
+            [
+              "07",
+              34168057.0,
+              35380477.61,
+              736542.0,
+              0.9657319320738248,
+              0.06409145594687504
+            ],
+            [
+              "08",
+              34631919.67,
+              35818751.23,
+              742531.0,
+              0.9668656354773764,
+              0.061035167520198996
+            ],
+            [
+              "09",
+              35791160.85,
+              36990542.06,
+              766954.0,
+              0.9675760033996106,
+              0.06267855122505761
+            ],
+            [
+              "10",
+              35685180.99,
+              36779930.93,
+              755104.0,
+              0.9702351278994097,
+              0.06783735042156414
+            ]
+          ],
+          "row_count": 10,
+          "preview_truncated": false,
+          "query_truncated": false,
+          "formats": {
+            "销售金额": {
+              "unit": "元",
+              "percent": false,
+              "scale": "fraction"
+            },
+            "目标金额": {
+              "unit": "元",
+              "percent": false,
+              "scale": "fraction"
+            },
+            "销售数量": {
+              "unit": "盒",
+              "percent": false,
+              "scale": "fraction"
+            },
+            "达成率": {
+              "unit": "%",
+              "percent": true,
+              "scale": "fraction"
+            },
+            "销售额同比": {
+              "unit": "%",
+              "percent": true,
+              "scale": "fraction"
+            }
+          }
+        }
+      }
+    },
+    {
+      "fingerprint": "8b9d31c09dbf5538c8a1092bf4f60ebebdbcfeb5b27e833b8278a4d88b80fc80",
+      "title": "月份与城市 · 销售金额",
+      "kind": "chart",
+      "width": "full",
+      "source": {
+        "kind": "template",
+        "template_id": "pharma-moc-2026-demo-v1",
+        "chatbot_id": "xlsx",
+        "chatbot_name": "XLSX 问数助手",
+        "sample": true,
+        "scope": {
+          "label": "2026-01至2026-10，10个城市，销售明细表；金额单位元，数量单位盒"
+        }
+      },
+      "snapshot": {
+        "charts": [
+          {
+            "type": "heatmap",
+            "label": "热力图",
+            "option": {
+              "color": [
+                "#C5203F",
+                "#3FB9C2",
+                "#128A89",
+                "#77A5B3",
+                "#64748B",
+                "#94A3B8",
+                "#0F766E",
+                "#D97706"
+              ],
+              "textStyle": {
+                "fontFamily": "Avenir Next, 'Helvetica Neue', -apple-system, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif",
+                "color": "#475569"
+              },
+              "animation": true,
+              "animationDuration": 720,
+              "animationEasing": "cubicOut",
+              "animationDurationUpdate": 360,
+              "animationEasingUpdate": "cubicInOut",
+              "title": {
+                "text": "月份与城市 · 销售金额",
+                "left": "left",
+                "top": 4,
+                "padding": [
+                  4,
+                  0,
+                  0,
+                  4
+                ],
+                "textStyle": {
+                  "fontSize": 15,
+                  "fontWeight": 600,
+                  "color": "#0F172A",
+                  "fontFamily": "Avenir Next, 'Helvetica Neue', -apple-system, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif"
+                }
+              },
+              "tooltip": {
+                "backgroundColor": "rgba(255, 255, 255, 0.96)",
+                "borderColor": "rgba(148, 163, 184, 0.28)",
+                "borderWidth": 1,
+                "padding": [
+                  12,
+                  16
+                ],
+                "textStyle": {
+                  "color": "#334155",
+                  "fontSize": 12,
+                  "fontFamily": "Avenir Next, 'Helvetica Neue', -apple-system, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif"
+                },
+                "extraCssText": "border-radius:12px;box-shadow:0 8px 24px rgba(15,23,42,.08);backdrop-filter:blur(6px);",
+                "trigger": "item",
+                "renderMode": "richText",
+                "confine": true
+              },
+              "grid": {
+                "left": 28,
+                "right": 20,
+                "top": 65,
+                "bottom": 90,
+                "containLabel": true
+              },
+              "xAxis": {
+                "type": "category",
+                "data": [
+                  "2026-01",
+                  "2026-02",
+                  "2026-03",
+                  "2026-04",
+                  "2026-05",
+                  "2026-06",
+                  "2026-07",
+                  "2026-08",
+                  "2026-09",
+                  "2026-10"
+                ],
+                "axisLabel": {
+                  "color": "#94A3B8",
+                  "fontSize": 11,
+                  "fontFamily": "Avenir Next, 'Helvetica Neue', -apple-system, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif",
+                  "interval": 0,
+                  "rotate": 28,
+                  "hideOverlap": true
+                },
+                "axisLine": {
+                  "show": false
+                },
+                "axisTick": {
+                  "show": false
+                }
+              },
+              "yAxis": {
+                "type": "category",
+                "data": [
+                  "上海",
+                  "北京",
+                  "南京",
+                  "广州",
+                  "成都",
+                  "杭州",
+                  "武汉",
+                  "深圳",
+                  "西安",
+                  "重庆"
+                ],
+                "axisLabel": {
+                  "color": "#94A3B8",
+                  "fontSize": 11,
+                  "fontFamily": "Avenir Next, 'Helvetica Neue', -apple-system, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif",
+                  "interval": 0,
+                  "rotate": 28,
+                  "hideOverlap": true
+                },
+                "axisLine": {
+                  "show": false
+                },
+                "axisTick": {
+                  "show": false
+                }
+              },
+              "visualMap": {
+                "min": 2593343.67,
+                "max": 4731831.16,
+                "calculable": true,
+                "orient": "horizontal",
+                "bottom": 10,
+                "left": "center",
+                "inRange": {
+                  "color": [
+                    "#f7eff2",
+                    "#c5203f",
+                    "#79182d"
+                  ]
+                }
+              },
+              "series": [
+                {
+                  "name": "销售金额",
+                  "type": "heatmap",
+                  "data": [
+                    [
+                      0,
+                      0,
+                      4471932.88
+                    ],
+                    [
+                      0,
+                      1,
+                      4294740.34
+                    ],
+                    [
+                      0,
+                      3,
+                      4008079.36
+                    ],
+                    [
+                      0,
+                      7,
+                      3681297.14
+                    ],
+                    [
+                      0,
+                      4,
+                      3634255.41
+                    ],
+                    [
+                      0,
+                      9,
+                      3491579.87
+                    ],
+                    [
+                      0,
+                      5,
+                      3290577.63
+                    ],
+                    [
+                      0,
+                      6,
+                      3171102.97
+                    ],
+                    [
+                      0,
+                      2,
+                      3081906.6
+                    ],
+                    [
+                      0,
+                      8,
+                      2849872.4
+                    ],
+                    [
+                      1,
+                      0,
+                      4497182.18
+                    ],
+                    [
+                      1,
+                      1,
+                      4287726.46
+                    ],
+                    [
+                      1,
+                      3,
+                      3982270.04
+                    ],
+                    [
+                      1,
+                      7,
+                      3708634.91
+                    ],
+                    [
+                      1,
+                      4,
+                      3619111.96
+                    ],
+                    [
+                      1,
+                      9,
+                      3536338.92
+                    ],
+                    [
+                      1,
+                      5,
+                      3256504.96
+                    ],
+                    [
+                      1,
+                      6,
+                      3178334.35
+                    ],
+                    [
+                      1,
+                      2,
+                      3065510.72
+                    ],
+                    [
+                      1,
+                      8,
+                      2821373.51
+                    ],
+                    [
+                      2,
+                      0,
+                      4134158.38
+                    ],
+                    [
+                      2,
+                      1,
+                      4033406.11
+                    ],
+                    [
+                      2,
+                      3,
+                      3704833.32
+                    ],
+                    [
+                      2,
+                      7,
+                      3472258.03
+                    ],
+                    [
+                      2,
+                      4,
+                      3372828.17
+                    ],
+                    [
+                      2,
+                      9,
+                      3270392.35
+                    ],
+                    [
+                      2,
+                      5,
+                      3057293.57
+                    ],
+                    [
+                      2,
+                      6,
+                      2940002.05
+                    ],
+                    [
+                      2,
+                      2,
+                      2908760.27
+                    ],
+                    [
+                      2,
+                      8,
+                      2631493.84
+                    ],
+                    [
+                      3,
+                      0,
+                      4391286.52
+                    ],
+                    [
+                      3,
+                      1,
+                      4005478.92
+                    ],
+                    [
+                      3,
+                      3,
+                      3643960.1
+                    ],
+                    [
+                      3,
+                      7,
+                      3445185.23
+                    ],
+                    [
+                      3,
+                      4,
+                      3354079.05
+                    ],
+                    [
+                      3,
+                      9,
+                      3269964.15
+                    ],
+                    [
+                      3,
+                      5,
+                      3017158.61
+                    ],
+                    [
+                      3,
+                      6,
+                      2986060.77
+                    ],
+                    [
+                      3,
+                      2,
+                      2906124.05
+                    ],
+                    [
+                      3,
+                      8,
+                      2593343.67
+                    ],
+                    [
+                      4,
+                      0,
+                      4352278.89
+                    ],
+                    [
+                      4,
+                      1,
+                      3931315.29
+                    ],
+                    [
+                      4,
+                      3,
+                      3671808.88
+                    ],
+                    [
+                      4,
+                      7,
+                      3456260.46
+                    ],
+                    [
+                      4,
+                      4,
+                      3369352.92
+                    ],
+                    [
+                      4,
+                      9,
+                      3249804.03
+                    ],
+                    [
+                      4,
+                      5,
+                      3061540.42
+                    ],
+                    [
+                      4,
+                      6,
+                      2985912.81
+                    ],
+                    [
+                      4,
+                      2,
+                      2874795.01
+                    ],
+                    [
+                      4,
+                      8,
+                      2617148.13
+                    ],
+                    [
+                      5,
+                      0,
+                      4543727.73
+                    ],
+                    [
+                      5,
+                      1,
+                      4020571.32
+                    ],
+                    [
+                      5,
+                      3,
+                      3684747.27
+                    ],
+                    [
+                      5,
+                      7,
+                      3498811.21
+                    ],
+                    [
+                      5,
+                      4,
+                      3383743.45
+                    ],
+                    [
+                      5,
+                      9,
+                      3360463.7
+                    ],
+                    [
+                      5,
+                      5,
+                      3080172.92
+                    ],
+                    [
+                      5,
+                      6,
+                      3006041.65
+                    ],
+                    [
+                      5,
+                      2,
+                      2981120.61
+                    ],
+                    [
+                      5,
+                      8,
+                      2692406.88
+                    ],
+                    [
+                      6,
+                      0,
+                      4485106.09
+                    ],
+                    [
+                      6,
+                      1,
+                      4104242.76
+                    ],
+                    [
+                      6,
+                      3,
+                      3764098.6
+                    ],
+                    [
+                      6,
+                      7,
+                      3509389.23
+                    ],
+                    [
+                      6,
+                      4,
+                      3408128.77
+                    ],
+                    [
+                      6,
+                      9,
+                      3318281.41
+                    ],
+                    [
+                      6,
+                      5,
+                      3094542.83
+                    ],
+                    [
+                      6,
+                      2,
+                      2944400.95
+                    ],
+                    [
+                      6,
+                      6,
+                      2878599.87
+                    ],
+                    [
+                      6,
+                      8,
+                      2661266.49
+                    ],
+                    [
+                      7,
+                      0,
+                      4562202.76
+                    ],
+                    [
+                      7,
+                      1,
+                      4135879.64
+                    ],
+                    [
+                      7,
+                      3,
+                      3781053.06
+                    ],
+                    [
+                      7,
+                      7,
+                      3570842.0
+                    ],
+                    [
+                      7,
+                      4,
+                      3442757.71
+                    ],
+                    [
+                      7,
+                      9,
+                      3368596.48
+                    ],
+                    [
+                      7,
+                      5,
+                      3171540.82
+                    ],
+                    [
+                      7,
+                      2,
+                      2978643.7
+                    ],
+                    [
+                      7,
+                      6,
+                      2921811.81
+                    ],
+                    [
+                      7,
+                      8,
+                      2698591.69
+                    ],
+                    [
+                      8,
+                      0,
+                      4679791.3
+                    ],
+                    [
+                      8,
+                      1,
+                      4294839.39
+                    ],
+                    [
+                      8,
+                      3,
+                      3904398.99
+                    ],
+                    [
+                      8,
+                      7,
+                      3669371.66
+                    ],
+                    [
+                      8,
+                      4,
+                      3630632.48
+                    ],
+                    [
+                      8,
+                      9,
+                      3535219.48
+                    ],
+                    [
+                      8,
+                      5,
+                      3262763.48
+                    ],
+                    [
+                      8,
+                      2,
+                      3047763.07
+                    ],
+                    [
+                      8,
+                      6,
+                      2978327.09
+                    ],
+                    [
+                      8,
+                      8,
+                      2788053.91
+                    ],
+                    [
+                      9,
+                      0,
+                      4731831.16
+                    ],
+                    [
+                      9,
+                      1,
+                      4216963.26
+                    ],
+                    [
+                      9,
+                      3,
+                      3913050.82
+                    ],
+                    [
+                      9,
+                      7,
+                      3653176.49
+                    ],
+                    [
+                      9,
+                      4,
+                      3552826.02
+                    ],
+                    [
+                      9,
+                      9,
+                      3471952.04
+                    ],
+                    [
+                      9,
+                      5,
+                      3208281.71
+                    ],
+                    [
+                      9,
+                      6,
+                      3105794.14
+                    ],
+                    [
+                      9,
+                      2,
+                      3045338.5
+                    ],
+                    [
+                      9,
+                      8,
+                      2785966.85
+                    ]
+                  ]
+                }
+              ]
+            },
+            "data": {
+              "columns": [
+                "月份",
+                "城市",
+                "销售金额"
+              ],
+              "rows": [
+                [
+                  "2026-01",
+                  "上海",
+                  4471932.88
+                ],
+                [
+                  "2026-01",
+                  "北京",
+                  4294740.34
+                ],
+                [
+                  "2026-01",
+                  "广州",
+                  4008079.36
+                ],
+                [
+                  "2026-01",
+                  "深圳",
+                  3681297.14
+                ],
+                [
+                  "2026-01",
+                  "成都",
+                  3634255.41
+                ],
+                [
+                  "2026-01",
+                  "重庆",
+                  3491579.87
+                ],
+                [
+                  "2026-01",
+                  "杭州",
+                  3290577.63
+                ],
+                [
+                  "2026-01",
+                  "武汉",
+                  3171102.97
+                ],
+                [
+                  "2026-01",
+                  "南京",
+                  3081906.6
+                ],
+                [
+                  "2026-01",
+                  "西安",
+                  2849872.4
+                ],
+                [
+                  "2026-02",
+                  "上海",
+                  4497182.18
+                ],
+                [
+                  "2026-02",
+                  "北京",
+                  4287726.46
+                ],
+                [
+                  "2026-02",
+                  "广州",
+                  3982270.04
+                ],
+                [
+                  "2026-02",
+                  "深圳",
+                  3708634.91
+                ],
+                [
+                  "2026-02",
+                  "成都",
+                  3619111.96
+                ],
+                [
+                  "2026-02",
+                  "重庆",
+                  3536338.92
+                ],
+                [
+                  "2026-02",
+                  "杭州",
+                  3256504.96
+                ],
+                [
+                  "2026-02",
+                  "武汉",
+                  3178334.35
+                ],
+                [
+                  "2026-02",
+                  "南京",
+                  3065510.72
+                ],
+                [
+                  "2026-02",
+                  "西安",
+                  2821373.51
+                ],
+                [
+                  "2026-03",
+                  "上海",
+                  4134158.38
+                ],
+                [
+                  "2026-03",
+                  "北京",
+                  4033406.11
+                ],
+                [
+                  "2026-03",
+                  "广州",
+                  3704833.32
+                ],
+                [
+                  "2026-03",
+                  "深圳",
+                  3472258.03
+                ],
+                [
+                  "2026-03",
+                  "成都",
+                  3372828.17
+                ],
+                [
+                  "2026-03",
+                  "重庆",
+                  3270392.35
+                ],
+                [
+                  "2026-03",
+                  "杭州",
+                  3057293.57
+                ],
+                [
+                  "2026-03",
+                  "武汉",
+                  2940002.05
+                ],
+                [
+                  "2026-03",
+                  "南京",
+                  2908760.27
+                ],
+                [
+                  "2026-03",
+                  "西安",
+                  2631493.84
+                ],
+                [
+                  "2026-04",
+                  "上海",
+                  4391286.52
+                ],
+                [
+                  "2026-04",
+                  "北京",
+                  4005478.92
+                ],
+                [
+                  "2026-04",
+                  "广州",
+                  3643960.1
+                ],
+                [
+                  "2026-04",
+                  "深圳",
+                  3445185.23
+                ],
+                [
+                  "2026-04",
+                  "成都",
+                  3354079.05
+                ],
+                [
+                  "2026-04",
+                  "重庆",
+                  3269964.15
+                ],
+                [
+                  "2026-04",
+                  "杭州",
+                  3017158.61
+                ],
+                [
+                  "2026-04",
+                  "武汉",
+                  2986060.77
+                ],
+                [
+                  "2026-04",
+                  "南京",
+                  2906124.05
+                ],
+                [
+                  "2026-04",
+                  "西安",
+                  2593343.67
+                ],
+                [
+                  "2026-05",
+                  "上海",
+                  4352278.89
+                ],
+                [
+                  "2026-05",
+                  "北京",
+                  3931315.29
+                ],
+                [
+                  "2026-05",
+                  "广州",
+                  3671808.88
+                ],
+                [
+                  "2026-05",
+                  "深圳",
+                  3456260.46
+                ],
+                [
+                  "2026-05",
+                  "成都",
+                  3369352.92
+                ],
+                [
+                  "2026-05",
+                  "重庆",
+                  3249804.03
+                ],
+                [
+                  "2026-05",
+                  "杭州",
+                  3061540.42
+                ],
+                [
+                  "2026-05",
+                  "武汉",
+                  2985912.81
+                ],
+                [
+                  "2026-05",
+                  "南京",
+                  2874795.01
+                ],
+                [
+                  "2026-05",
+                  "西安",
+                  2617148.13
+                ],
+                [
+                  "2026-06",
+                  "上海",
+                  4543727.73
+                ],
+                [
+                  "2026-06",
+                  "北京",
+                  4020571.32
+                ],
+                [
+                  "2026-06",
+                  "广州",
+                  3684747.27
+                ],
+                [
+                  "2026-06",
+                  "深圳",
+                  3498811.21
+                ],
+                [
+                  "2026-06",
+                  "成都",
+                  3383743.45
+                ],
+                [
+                  "2026-06",
+                  "重庆",
+                  3360463.7
+                ],
+                [
+                  "2026-06",
+                  "杭州",
+                  3080172.92
+                ],
+                [
+                  "2026-06",
+                  "武汉",
+                  3006041.65
+                ],
+                [
+                  "2026-06",
+                  "南京",
+                  2981120.61
+                ],
+                [
+                  "2026-06",
+                  "西安",
+                  2692406.88
+                ],
+                [
+                  "2026-07",
+                  "上海",
+                  4485106.09
+                ],
+                [
+                  "2026-07",
+                  "北京",
+                  4104242.76
+                ],
+                [
+                  "2026-07",
+                  "广州",
+                  3764098.6
+                ],
+                [
+                  "2026-07",
+                  "深圳",
+                  3509389.23
+                ],
+                [
+                  "2026-07",
+                  "成都",
+                  3408128.77
+                ],
+                [
+                  "2026-07",
+                  "重庆",
+                  3318281.41
+                ],
+                [
+                  "2026-07",
+                  "杭州",
+                  3094542.83
+                ],
+                [
+                  "2026-07",
+                  "南京",
+                  2944400.95
+                ],
+                [
+                  "2026-07",
+                  "武汉",
+                  2878599.87
+                ],
+                [
+                  "2026-07",
+                  "西安",
+                  2661266.49
+                ],
+                [
+                  "2026-08",
+                  "上海",
+                  4562202.76
+                ],
+                [
+                  "2026-08",
+                  "北京",
+                  4135879.64
+                ],
+                [
+                  "2026-08",
+                  "广州",
+                  3781053.06
+                ],
+                [
+                  "2026-08",
+                  "深圳",
+                  3570842.0
+                ],
+                [
+                  "2026-08",
+                  "成都",
+                  3442757.71
+                ],
+                [
+                  "2026-08",
+                  "重庆",
+                  3368596.48
+                ],
+                [
+                  "2026-08",
+                  "杭州",
+                  3171540.82
+                ],
+                [
+                  "2026-08",
+                  "南京",
+                  2978643.7
+                ],
+                [
+                  "2026-08",
+                  "武汉",
+                  2921811.81
+                ],
+                [
+                  "2026-08",
+                  "西安",
+                  2698591.69
+                ],
+                [
+                  "2026-09",
+                  "上海",
+                  4679791.3
+                ],
+                [
+                  "2026-09",
+                  "北京",
+                  4294839.39
+                ],
+                [
+                  "2026-09",
+                  "广州",
+                  3904398.99
+                ],
+                [
+                  "2026-09",
+                  "深圳",
+                  3669371.66
+                ],
+                [
+                  "2026-09",
+                  "成都",
+                  3630632.48
+                ],
+                [
+                  "2026-09",
+                  "重庆",
+                  3535219.48
+                ],
+                [
+                  "2026-09",
+                  "杭州",
+                  3262763.48
+                ],
+                [
+                  "2026-09",
+                  "南京",
+                  3047763.07
+                ],
+                [
+                  "2026-09",
+                  "武汉",
+                  2978327.09
+                ],
+                [
+                  "2026-09",
+                  "西安",
+                  2788053.91
+                ],
+                [
+                  "2026-10",
+                  "上海",
+                  4731831.16
+                ],
+                [
+                  "2026-10",
+                  "北京",
+                  4216963.26
+                ],
+                [
+                  "2026-10",
+                  "广州",
+                  3913050.82
+                ],
+                [
+                  "2026-10",
+                  "深圳",
+                  3653176.49
+                ],
+                [
+                  "2026-10",
+                  "成都",
+                  3552826.02
+                ],
+                [
+                  "2026-10",
+                  "重庆",
+                  3471952.04
+                ],
+                [
+                  "2026-10",
+                  "杭州",
+                  3208281.71
+                ],
+                [
+                  "2026-10",
+                  "武汉",
+                  3105794.14
+                ],
+                [
+                  "2026-10",
+                  "南京",
+                  3045338.5
+                ],
+                [
+                  "2026-10",
+                  "西安",
+                  2785966.85
+                ]
+              ],
+              "row_count": 100,
+              "preview_truncated": false,
+              "query_truncated": false,
+              "formats": {
+                "销售金额": {
+                  "unit": "元",
+                  "percent": false,
+                  "scale": "fraction"
+                }
+              }
+            }
+          }
+        ],
+        "default_type": "heatmap",
+        "version": 2,
+        "scope": "2026-01至2026-10，10个城市，销售明细表；金额单位元，数量单位盒",
+        "kpis": [
+          {
+            "label": "销售金额",
+            "value": 347164741.86,
+            "unit": "元",
+            "note": "当前查询范围"
+          },
+          {
+            "label": "目标金额",
+            "value": 358079027.02,
+            "unit": "元",
+            "note": "当前查询范围"
+          },
+          {
+            "label": "销售数量",
+            "value": 7471267.0,
+            "unit": "盒",
+            "note": "当前查询范围"
+          },
+          {
+            "label": "达成率",
+            "value": 0.9695198983005772,
+            "unit": "%",
+            "note": "当前查询范围"
+          },
+          {
+            "label": "记录数",
+            "value": 45400.0,
+            "unit": "条",
+            "note": "当前查询范围"
+          },
+          {
+            "label": "去重终端数",
+            "value": 400.0,
+            "unit": "家",
+            "note": "当前查询范围"
+          },
+          {
+            "label": "城市数",
+            "value": 10.0,
+            "unit": "个",
+            "note": "当前查询范围"
+          }
+        ],
+        "metrics": [
+          {
+            "column": "销售金额",
+            "unit": "元",
+            "chart": "bar",
+            "aggregate": "sum",
+            "numerator": null,
+            "denominator": null,
+            "scale": "fraction"
+          },
+          {
+            "column": "目标金额",
+            "unit": "元",
+            "chart": "bar",
+            "aggregate": "sum",
+            "numerator": null,
+            "denominator": null,
+            "scale": "fraction"
+          },
+          {
+            "column": "销售数量",
+            "unit": "盒",
+            "chart": "bar",
+            "aggregate": "sum",
+            "numerator": null,
+            "denominator": null,
+            "scale": "fraction"
+          },
+          {
+            "column": "达成率",
+            "unit": "%",
+            "chart": "line",
+            "aggregate": "ratio",
+            "numerator": "销售金额",
+            "denominator": "目标金额",
+            "scale": "fraction"
+          }
+        ],
+        "warnings": [],
+        "details": {
+          "columns": [
+            "月份",
+            "城市",
+            "销售金额",
+            "目标金额",
+            "销售数量",
+            "达成率"
+          ],
+          "rows": [
+            [
+              "2026-01",
+              "上海",
+              4471932.88,
+              4640018.21,
+              96804.0,
+              0.9637748555301467
+            ],
+            [
+              "2026-01",
+              "北京",
+              4294740.34,
+              4461105.86,
+              92690.0,
+              0.9627075605867823
+            ],
+            [
+              "2026-01",
+              "广州",
+              4008079.36,
+              4103527.72,
+              86361.0,
+              0.9767399256169761
+            ],
+            [
+              "2026-01",
+              "深圳",
+              3681297.14,
+              3856593.5,
+              79499.0,
+              0.9545463217733474
+            ],
+            [
+              "2026-01",
+              "成都",
+              3634255.41,
+              3746187.84,
+              78800.0,
+              0.9701209777030295
+            ],
+            [
+              "2026-01",
+              "重庆",
+              3491579.87,
+              3641627.73,
+              76083.0,
+              0.9587964857681925
+            ],
+            [
+              "2026-01",
+              "杭州",
+              3290577.63,
+              3393169.08,
+              70867.0,
+              0.9697652997592445
+            ],
+            [
+              "2026-01",
+              "武汉",
+              3171102.97,
+              3283163.5300000003,
+              68400.0,
+              0.9658681150128394
+            ],
+            [
+              "2026-01",
+              "南京",
+              3081906.6,
+              3209759.64,
+              66778.0,
+              0.960167409918582
+            ],
+            [
+              "2026-01",
+              "西安",
+              2849872.4,
+              2926508.54,
+              61331.0,
+              0.9738131158845004
+            ],
+            [
+              "2026-02",
+              "上海",
+              4497182.18,
+              4648359.33,
+              97652.0,
+              0.9674773098920474
+            ],
+            [
+              "2026-02",
+              "北京",
+              4287726.46,
+              4467765.31,
+              93373.0,
+              0.9597027064969087
+            ],
+            [
+              "2026-02",
+              "广州",
+              3982270.04,
+              4111219.46,
+              86654.0,
+              0.9686347515002276
+            ],
+            [
+              "2026-02",
+              "深圳",
+              3708634.91,
+              3860380.93,
+              80614.0,
+              0.9606914388109362
+            ],
+            [
+              "2026-02",
+              "成都",
+              3619111.96,
+              3753756.88,
+              78609.0,
+              0.9641306231851648
+            ],
+            [
+              "2026-02",
+              "重庆",
+              3536338.92,
+              3646274.35,
+              77170.0,
+              0.969849929147542
+            ],
+            [
+              "2026-02",
+              "杭州",
+              3256504.96,
+              3396226.75,
+              70807.0,
+              0.9588596992235574
+            ],
+            [
+              "2026-02",
+              "武汉",
+              3178334.35,
+              3288522.05,
+              69272.0,
+              0.9664932458032326
+            ],
+            [
+              "2026-02",
+              "南京",
+              3065510.72,
+              3217316.34,
+              66727.0,
+              0.9528160727894107
+            ],
+            [
+              "2026-02",
+              "西安",
+              2821373.51,
+              2930013.63,
+              61351.0,
+              0.9629216332348597
+            ],
+            [
+              "2026-03",
+              "上海",
+              4134158.38,
+              4314556.69,
+              88661.0,
+              0.9581884483246874
+            ],
+            [
+              "2026-03",
+              "北京",
+              4033406.11,
+              4152068.23,
+              86725.0,
+              0.9714209609700947
+            ],
+            [
+              "2026-03",
+              "广州",
+              3704833.32,
+              3819361.38,
+              79953.0,
+              0.9700138194307237
+            ],
+            [
+              "2026-03",
+              "深圳",
+              3472258.03,
+              3583927.38,
+              74883.0,
+              0.9688416259148643
+            ],
+            [
+              "2026-03",
+              "成都",
+              3372828.17,
+              3487868.66,
+              72800.0,
+              0.967016966172115
+            ],
+            [
+              "2026-03",
+              "重庆",
+              3270392.35,
+              3384077.21,
+              70337.0,
+              0.9664059497034939
+            ],
+            [
+              "2026-03",
+              "杭州",
+              3057293.57,
+              3154084.37,
+              65912.0,
+              0.9693125520291646
+            ],
+            [
+              "2026-03",
+              "武汉",
+              2940002.05,
+              3052393.89,
+              63439.0,
+              0.9631791164409649
+            ],
+            [
+              "2026-03",
+              "南京",
+              2908760.27,
+              2988698.11,
+              62770.0,
+              0.9732532905439554
+            ],
+            [
+              "2026-03",
+              "西安",
+              2631493.84,
+              2722027.18,
+              56570.0,
+              0.9667404717097644
+            ],
+            [
+              "2026-04",
+              "上海",
+              4391286.52,
+              4315921.24,
+              93768.0,
+              1.0174621536884207
+            ],
+            [
+              "2026-04",
+              "北京",
+              4005478.92,
+              4157041.76,
+              86772.0,
+              0.9635406982295988
+            ],
+            [
+              "2026-04",
+              "广州",
+              3643960.1,
+              3821266.4,
+              78193.0,
+              0.953600120630166
+            ],
+            [
+              "2026-04",
+              "深圳",
+              3445185.23,
+              3590296.19,
+              74383.0,
+              0.9595824543935468
+            ],
+            [
+              "2026-04",
+              "成都",
+              3354079.05,
+              3489881.45,
+              72460.0,
+              0.9610868157140409
+            ],
+            [
+              "2026-04",
+              "重庆",
+              3269964.15,
+              3387822.51,
+              70362.0,
+              0.9652111763080529
+            ],
+            [
+              "2026-04",
+              "杭州",
+              3017158.61,
+              3156178.8,
+              65258.0,
+              0.9559530055775041
+            ],
+            [
+              "2026-04",
+              "武汉",
+              2986060.77,
+              3058762.88,
+              64385.0,
+              0.9762315312261146
+            ],
+            [
+              "2026-04",
+              "南京",
+              2906124.05,
+              2991555.8000000003,
+              62224.0,
+              0.9714423678809533
+            ],
+            [
+              "2026-04",
+              "西安",
+              2593343.67,
+              2724242.51,
+              56049.0,
+              0.9519503717016735
+            ],
+            [
+              "2026-05",
+              "上海",
+              4352278.89,
+              4331273.1,
+              94257.0,
+              1.0048497957794442
+            ],
+            [
+              "2026-05",
+              "北京",
+              3931315.29,
+              4162918.7399999998,
+              85100.0,
+              0.9443651282993817
+            ],
+            [
+              "2026-05",
+              "广州",
+              3671808.88,
+              3829318.66,
+              79515.0,
+              0.9588674137659778
+            ],
+            [
+              "2026-05",
+              "深圳",
+              3456260.46,
+              3596567.15,
+              74989.0,
+              0.9609887194793513
+            ],
+            [
+              "2026-05",
+              "成都",
+              3369352.92,
+              3496853.29,
+              72879.0,
+              0.9635385418185503
+            ],
+            [
+              "2026-05",
+              "重庆",
+              3249804.03,
+              3399140.62,
+              70435.0,
+              0.9560663689165056
+            ],
+            [
+              "2026-05",
+              "杭州",
+              3061540.42,
+              3165170.32,
+              66624.0,
+              0.9672592974396399
+            ],
+            [
+              "2026-05",
+              "武汉",
+              2985912.81,
+              3064482.23,
+              64350.0,
+              0.974361274074022
+            ],
+            [
+              "2026-05",
+              "南京",
+              2874795.01,
+              2997721.95,
+              62196.0,
+              0.9589932148310152
+            ],
+            [
+              "2026-05",
+              "西安",
+              2617148.13,
+              2731195.86,
+              56903.0,
+              0.9582425663167196
+            ],
+            [
+              "2026-06",
+              "上海",
+              4543727.73,
+              4283004.05,
+              96659.0,
+              1.060874021354241
+            ],
+            [
+              "2026-06",
+              "北京",
+              4020571.32,
+              4119659.97,
+              86606.0,
+              0.9759473716953391
+            ],
+            [
+              "2026-06",
+              "广州",
+              3684747.27,
+              3788052.61,
+              79199.0,
+              0.9727286416964521
+            ],
+            [
+              "2026-06",
+              "深圳",
+              3498811.21,
+              3558757.24,
+              75554.0,
+              0.9831553472301471
+            ],
+            [
+              "2026-06",
+              "成都",
+              3383743.45,
+              3458642.79,
+              73150.0,
+              0.9783442973016593
+            ],
+            [
+              "2026-06",
+              "重庆",
+              3360463.7,
+              3363262.04,
+              72178.0,
+              0.9991679684881171
+            ],
+            [
+              "2026-06",
+              "杭州",
+              3080172.92,
+              3132562.19,
+              66765.0,
+              0.9832759042526782
+            ],
+            [
+              "2026-06",
+              "武汉",
+              3006041.65,
+              3031565.18,
+              64674.0,
+              0.9915807418001812
+            ],
+            [
+              "2026-06",
+              "南京",
+              2981120.61,
+              2964802.03,
+              64510.0,
+              1.0055041044342512
+            ],
+            [
+              "2026-06",
+              "西安",
+              2692406.88,
+              2700845.85,
+              57847.0,
+              0.9968754344125192
+            ],
+            [
+              "2026-07",
+              "上海",
+              4485106.09,
+              4406416.31,
+              95857.0,
+              1.0178579994408201
+            ],
+            [
+              "2026-07",
+              "北京",
+              4104242.76,
+              4234093.83,
+              88540.0,
+              0.969332028241802
+            ],
+            [
+              "2026-07",
+              "广州",
+              3764098.6,
+              3899225.21,
+              81459.0,
+              0.9653452666305469
+            ],
+            [
+              "2026-07",
+              "深圳",
+              3509389.23,
+              3662630.91,
+              76305.0,
+              0.9581607637336299
+            ],
+            [
+              "2026-07",
+              "成都",
+              3408128.77,
+              3557748.66,
+              73173.0,
+              0.9579453456951059
+            ],
+            [
+              "2026-07",
+              "重庆",
+              3318281.41,
+              3457192.91,
+              71847.0,
+              0.9598195693395657
+            ],
+            [
+              "2026-07",
+              "杭州",
+              3094542.83,
+              3218974.35,
+              66595.0,
+              0.9613443580250958
+            ],
+            [
+              "2026-07",
+              "南京",
+              2944400.95,
+              3048659.26,
+              63735.0,
+              0.9658019145111023
+            ],
+            [
+              "2026-07",
+              "武汉",
+              2878599.87,
+              3116347.3,
+              61517.0,
+              0.9237095846152963
+            ],
+            [
+              "2026-07",
+              "西安",
+              2661266.49,
+              2779188.87,
+              57514.0,
+              0.9575694976066884
+            ],
+            [
+              "2026-08",
+              "上海",
+              4562202.76,
+              4458555.09,
+              96996.0,
+              1.023246919216602
+            ],
+            [
+              "2026-08",
+              "北京",
+              4135879.64,
+              4288781.59,
+              89238.0,
+              0.9643483943419932
+            ],
+            [
+              "2026-08",
+              "广州",
+              3781053.06,
+              3945469.0,
+              81745.0,
+              0.9583279098124963
+            ],
+            [
+              "2026-08",
+              "深圳",
+              3570842.0,
+              3706043.65,
+              76710.0,
+              0.9635186029176964
+            ],
+            [
+              "2026-08",
+              "成都",
+              3442757.71,
+              3600378.49,
+              74058.0,
+              0.9562210527482625
+            ],
+            [
+              "2026-08",
+              "重庆",
+              3368596.48,
+              3500847.3,
+              72236.0,
+              0.9622231966529932
+            ],
+            [
+              "2026-08",
+              "杭州",
+              3171540.82,
+              3260485.51,
+              67962.0,
+              0.9727204154941943
+            ],
+            [
+              "2026-08",
+              "南京",
+              2978643.7,
+              3087405.63,
+              63943.0,
+              0.9647723872292091
+            ],
+            [
+              "2026-08",
+              "武汉",
+              2921811.81,
+              3156638.25,
+              61595.0,
+              0.9256086946294844
+            ],
+            [
+              "2026-08",
+              "西安",
+              2698591.69,
+              2814146.72,
+              58048.0,
+              0.9589378090421667
+            ],
+            [
+              "2026-09",
+              "上海",
+              4679791.3,
+              4604153.5,
+              99229.0,
+              1.0164281664371093
+            ],
+            [
+              "2026-09",
+              "北京",
+              4294839.39,
+              4430976.18,
+              92641.0,
+              0.9692761178418251
+            ],
+            [
+              "2026-09",
+              "广州",
+              3904398.99,
+              4074072.65,
+              83837.0,
+              0.9583528143515065
+            ],
+            [
+              "2026-09",
+              "深圳",
+              3669371.66,
+              3828732.59,
+              78634.0,
+              0.958377628561414
+            ],
+            [
+              "2026-09",
+              "成都",
+              3630632.48,
+              3719005.06,
+              78014.0,
+              0.9762375746807938
+            ],
+            [
+              "2026-09",
+              "重庆",
+              3535219.48,
+              3614238.09,
+              76114.0,
+              0.9781368553946042
+            ],
+            [
+              "2026-09",
+              "杭州",
+              3262763.48,
+              3366108.83,
+              69941.0,
+              0.9692982742925753
+            ],
+            [
+              "2026-09",
+              "南京",
+              3047763.07,
+              3187420.63,
+              65464.0,
+              0.9561847725130649
+            ],
+            [
+              "2026-09",
+              "武汉",
+              2978327.09,
+              3257965.18,
+              63270.0,
+              0.9141678702655747
+            ],
+            [
+              "2026-09",
+              "西安",
+              2788053.91,
+              2907869.35,
+              59810.0,
+              0.9587961405487492
+            ],
+            [
+              "2026-10",
+              "上海",
+              4731831.16,
+              4579653.81,
+              98666.0,
+              1.0332290073253376
+            ],
+            [
+              "2026-10",
+              "北京",
+              4216963.26,
+              4401849.7299999995,
+              88901.0,
+              0.9579980050795601
+            ],
+            [
+              "2026-10",
+              "广州",
+              3913050.82,
+              4051728.96,
+              82874.0,
+              0.9657730955428963
+            ],
+            [
+              "2026-10",
+              "深圳",
+              3653176.49,
+              3805654.5,
+              77446.0,
+              0.959933827413918
+            ],
+            [
+              "2026-10",
+              "成都",
+              3552826.02,
+              3700113.36,
+              75541.0,
+              0.9601938303857804
+            ],
+            [
+              "2026-10",
+              "重庆",
+              3471952.04,
+              3593820.66,
+              73958.0,
+              0.9660893985733834
+            ],
+            [
+              "2026-10",
+              "杭州",
+              3208281.71,
+              3348590.6,
+              68033.0,
+              0.9580991208659547
+            ],
+            [
+              "2026-10",
+              "武汉",
+              3105794.14,
+              3239486.17,
+              65860.0,
+              0.9587304828654355
+            ],
+            [
+              "2026-10",
+              "南京",
+              3045338.5,
+              3171796.65,
+              64741.0,
+              0.9601304358525002
+            ],
+            [
+              "2026-10",
+              "西安",
+              2785966.85,
+              2887236.4899999998,
+              59084.0,
+              0.9649250623041274
+            ]
+          ],
+          "row_count": 100,
+          "preview_truncated": false,
+          "query_truncated": false,
+          "formats": {
+            "销售金额": {
+              "unit": "元",
+              "percent": false,
+              "scale": "fraction"
+            },
+            "目标金额": {
+              "unit": "元",
+              "percent": false,
+              "scale": "fraction"
+            },
+            "销售数量": {
+              "unit": "盒",
+              "percent": false,
+              "scale": "fraction"
+            },
+            "达成率": {
+              "unit": "%",
+              "percent": true,
+              "scale": "fraction"
+            }
+          }
+        },
+        "data": {
+          "columns": [
+            "月份",
+            "城市",
+            "销售金额"
+          ],
+          "rows": [
+            [
+              "2026-01",
+              "上海",
+              4471932.88
+            ],
+            [
+              "2026-01",
+              "北京",
+              4294740.34
+            ],
+            [
+              "2026-01",
+              "广州",
+              4008079.36
+            ],
+            [
+              "2026-01",
+              "深圳",
+              3681297.14
+            ],
+            [
+              "2026-01",
+              "成都",
+              3634255.41
+            ],
+            [
+              "2026-01",
+              "重庆",
+              3491579.87
+            ],
+            [
+              "2026-01",
+              "杭州",
+              3290577.63
+            ],
+            [
+              "2026-01",
+              "武汉",
+              3171102.97
+            ],
+            [
+              "2026-01",
+              "南京",
+              3081906.6
+            ],
+            [
+              "2026-01",
+              "西安",
+              2849872.4
+            ],
+            [
+              "2026-02",
+              "上海",
+              4497182.18
+            ],
+            [
+              "2026-02",
+              "北京",
+              4287726.46
+            ],
+            [
+              "2026-02",
+              "广州",
+              3982270.04
+            ],
+            [
+              "2026-02",
+              "深圳",
+              3708634.91
+            ],
+            [
+              "2026-02",
+              "成都",
+              3619111.96
+            ],
+            [
+              "2026-02",
+              "重庆",
+              3536338.92
+            ],
+            [
+              "2026-02",
+              "杭州",
+              3256504.96
+            ],
+            [
+              "2026-02",
+              "武汉",
+              3178334.35
+            ],
+            [
+              "2026-02",
+              "南京",
+              3065510.72
+            ],
+            [
+              "2026-02",
+              "西安",
+              2821373.51
+            ],
+            [
+              "2026-03",
+              "上海",
+              4134158.38
+            ],
+            [
+              "2026-03",
+              "北京",
+              4033406.11
+            ],
+            [
+              "2026-03",
+              "广州",
+              3704833.32
+            ],
+            [
+              "2026-03",
+              "深圳",
+              3472258.03
+            ],
+            [
+              "2026-03",
+              "成都",
+              3372828.17
+            ],
+            [
+              "2026-03",
+              "重庆",
+              3270392.35
+            ],
+            [
+              "2026-03",
+              "杭州",
+              3057293.57
+            ],
+            [
+              "2026-03",
+              "武汉",
+              2940002.05
+            ],
+            [
+              "2026-03",
+              "南京",
+              2908760.27
+            ],
+            [
+              "2026-03",
+              "西安",
+              2631493.84
+            ],
+            [
+              "2026-04",
+              "上海",
+              4391286.52
+            ],
+            [
+              "2026-04",
+              "北京",
+              4005478.92
+            ],
+            [
+              "2026-04",
+              "广州",
+              3643960.1
+            ],
+            [
+              "2026-04",
+              "深圳",
+              3445185.23
+            ],
+            [
+              "2026-04",
+              "成都",
+              3354079.05
+            ],
+            [
+              "2026-04",
+              "重庆",
+              3269964.15
+            ],
+            [
+              "2026-04",
+              "杭州",
+              3017158.61
+            ],
+            [
+              "2026-04",
+              "武汉",
+              2986060.77
+            ],
+            [
+              "2026-04",
+              "南京",
+              2906124.05
+            ],
+            [
+              "2026-04",
+              "西安",
+              2593343.67
+            ],
+            [
+              "2026-05",
+              "上海",
+              4352278.89
+            ],
+            [
+              "2026-05",
+              "北京",
+              3931315.29
+            ],
+            [
+              "2026-05",
+              "广州",
+              3671808.88
+            ],
+            [
+              "2026-05",
+              "深圳",
+              3456260.46
+            ],
+            [
+              "2026-05",
+              "成都",
+              3369352.92
+            ],
+            [
+              "2026-05",
+              "重庆",
+              3249804.03
+            ],
+            [
+              "2026-05",
+              "杭州",
+              3061540.42
+            ],
+            [
+              "2026-05",
+              "武汉",
+              2985912.81
+            ],
+            [
+              "2026-05",
+              "南京",
+              2874795.01
+            ],
+            [
+              "2026-05",
+              "西安",
+              2617148.13
+            ],
+            [
+              "2026-06",
+              "上海",
+              4543727.73
+            ],
+            [
+              "2026-06",
+              "北京",
+              4020571.32
+            ],
+            [
+              "2026-06",
+              "广州",
+              3684747.27
+            ],
+            [
+              "2026-06",
+              "深圳",
+              3498811.21
+            ],
+            [
+              "2026-06",
+              "成都",
+              3383743.45
+            ],
+            [
+              "2026-06",
+              "重庆",
+              3360463.7
+            ],
+            [
+              "2026-06",
+              "杭州",
+              3080172.92
+            ],
+            [
+              "2026-06",
+              "武汉",
+              3006041.65
+            ],
+            [
+              "2026-06",
+              "南京",
+              2981120.61
+            ],
+            [
+              "2026-06",
+              "西安",
+              2692406.88
+            ],
+            [
+              "2026-07",
+              "上海",
+              4485106.09
+            ],
+            [
+              "2026-07",
+              "北京",
+              4104242.76
+            ],
+            [
+              "2026-07",
+              "广州",
+              3764098.6
+            ],
+            [
+              "2026-07",
+              "深圳",
+              3509389.23
+            ],
+            [
+              "2026-07",
+              "成都",
+              3408128.77
+            ],
+            [
+              "2026-07",
+              "重庆",
+              3318281.41
+            ],
+            [
+              "2026-07",
+              "杭州",
+              3094542.83
+            ],
+            [
+              "2026-07",
+              "南京",
+              2944400.95
+            ],
+            [
+              "2026-07",
+              "武汉",
+              2878599.87
+            ],
+            [
+              "2026-07",
+              "西安",
+              2661266.49
+            ],
+            [
+              "2026-08",
+              "上海",
+              4562202.76
+            ],
+            [
+              "2026-08",
+              "北京",
+              4135879.64
+            ],
+            [
+              "2026-08",
+              "广州",
+              3781053.06
+            ],
+            [
+              "2026-08",
+              "深圳",
+              3570842.0
+            ],
+            [
+              "2026-08",
+              "成都",
+              3442757.71
+            ],
+            [
+              "2026-08",
+              "重庆",
+              3368596.48
+            ],
+            [
+              "2026-08",
+              "杭州",
+              3171540.82
+            ],
+            [
+              "2026-08",
+              "南京",
+              2978643.7
+            ],
+            [
+              "2026-08",
+              "武汉",
+              2921811.81
+            ],
+            [
+              "2026-08",
+              "西安",
+              2698591.69
+            ],
+            [
+              "2026-09",
+              "上海",
+              4679791.3
+            ],
+            [
+              "2026-09",
+              "北京",
+              4294839.39
+            ],
+            [
+              "2026-09",
+              "广州",
+              3904398.99
+            ],
+            [
+              "2026-09",
+              "深圳",
+              3669371.66
+            ],
+            [
+              "2026-09",
+              "成都",
+              3630632.48
+            ],
+            [
+              "2026-09",
+              "重庆",
+              3535219.48
+            ],
+            [
+              "2026-09",
+              "杭州",
+              3262763.48
+            ],
+            [
+              "2026-09",
+              "南京",
+              3047763.07
+            ],
+            [
+              "2026-09",
+              "武汉",
+              2978327.09
+            ],
+            [
+              "2026-09",
+              "西安",
+              2788053.91
+            ],
+            [
+              "2026-10",
+              "上海",
+              4731831.16
+            ],
+            [
+              "2026-10",
+              "北京",
+              4216963.26
+            ],
+            [
+              "2026-10",
+              "广州",
+              3913050.82
+            ],
+            [
+              "2026-10",
+              "深圳",
+              3653176.49
+            ],
+            [
+              "2026-10",
+              "成都",
+              3552826.02
+            ],
+            [
+              "2026-10",
+              "重庆",
+              3471952.04
+            ],
+            [
+              "2026-10",
+              "杭州",
+              3208281.71
+            ],
+            [
+              "2026-10",
+              "武汉",
+              3105794.14
+            ],
+            [
+              "2026-10",
+              "南京",
+              3045338.5
+            ],
+            [
+              "2026-10",
+              "西安",
+              2785966.85
+            ]
+          ],
+          "row_count": 100,
+          "preview_truncated": false,
+          "query_truncated": false,
+          "formats": {
+            "销售金额": {
+              "unit": "元",
+              "percent": false,
+              "scale": "fraction"
+            }
+          }
+        }
+      }
+    },
+    {
+      "fingerprint": "5886b80666e49e7d207647bfb94c39fa2f07fe99cd845eedeec7fe7d4f1efc3a",
+      "title": "一、总体表现（2026年1—10月，10城市）",
+      "kind": "table",
+      "width": "full",
+      "source": {
+        "kind": "template",
+        "template_id": "pharma-moc-2026-demo-v1",
+        "chatbot_id": "xlsx",
+        "chatbot_name": "XLSX 问数助手",
+        "sample": true,
+        "scope": {
+          "label": "一、总体表现（2026年1—10月，10城市）"
+        }
+      },
+      "snapshot": {
+        "data": {
+          "columns": [
+            "指标",
+            "数值"
+          ],
+          "rows": [
+            [
+              "累计销售金额",
+              "347,164,741.86 元"
+            ],
+            [
+              "累计目标金额",
+              "358,079,027.02 元"
+            ],
+            [
+              "累计销售数量",
+              "7,471,267 盒"
+            ],
+            [
+              "整体达成率",
+              "96.95%（净差额 -10,914,285.16 元）"
+            ],
+            [
+              "销售额同比",
+              "+7.40%（同期 323,232,285.53 元）"
+            ],
+            [
+              "销量同比",
+              "+8.69%（同期 6,874,074 盒）"
+            ],
+            [
+              "去重终端数",
+              "400 家"
+            ],
+            [
+              "记录数",
+              "45,400 条"
+            ]
+          ],
+          "row_count": 8,
+          "preview_truncated": false,
+          "query_truncated": false,
+          "formats": {}
+        },
+        "scope": "一、总体表现（2026年1—10月，10城市）"
+      }
+    },
+    {
+      "fingerprint": "6cd756c6c975dcad1dae5b08f417f6716c6bb65b9c187d4eca052865060e7d2b",
+      "title": "2026年1—10月经营表现：销售金额、目标、销量、达成率与同比 · 图表数据",
+      "kind": "table",
+      "width": "full",
+      "source": {
+        "kind": "template",
+        "template_id": "pharma-moc-2026-demo-v1",
+        "chatbot_id": "xlsx",
+        "chatbot_name": "XLSX 问数助手",
+        "sample": true,
+        "scope": {
+          "label": "2026年1—10月，10城市全部渠道与终端；金额单位元，数量单位盒；同比对比2025年1—10月同月"
+        }
+      },
+      "snapshot": {
+        "data": {
+          "columns": [
+            "月份",
+            "销售金额",
+            "目标金额",
+            "销售数量",
+            "达成率",
+            "销售额同比"
+          ],
+          "rows": [
+            [
+              "01",
+              35975344.6,
+              37261661.65,
+              777613.0,
+              0.9654788060156196,
+              0.08485467623782927
+            ],
+            [
+              "02",
+              35952988.01,
+              37319835.03,
+              782229.0,
+              0.9633747839747617,
+              0.07961465744071483
+            ],
+            [
+              "03",
+              33525426.09,
+              34659063.1,
+              722050.0,
+              0.9672917583857019,
+              0.08566529209780827
+            ],
+            [
+              "04",
+              33612641.07,
+              34692969.54,
+              723854.0,
+              0.9688603055799415,
+              0.08779504236981195
+            ],
+            [
+              "05",
+              33570216.84,
+              34774641.92,
+              727248.0,
+              0.9653648459480673,
+              0.0745795121265691
+            ],
+            [
+              "06",
+              34251806.74,
+              34401153.95,
+              737142.0,
+              0.9956586569678137,
+              0.07369672222549939
+            ],
+            [
+              "07",
+              34168057.0,
+              35380477.61,
+              736542.0,
+              0.9657319320738248,
+              0.06409145594687504
+            ],
+            [
+              "08",
+              34631919.67,
+              35818751.23,
+              742531.0,
+              0.9668656354773764,
+              0.061035167520198996
+            ],
+            [
+              "09",
+              35791160.85,
+              36990542.06,
+              766954.0,
+              0.9675760033996106,
+              0.06267855122505761
+            ],
+            [
+              "10",
+              35685180.99,
+              36779930.93,
+              755104.0,
+              0.9702351278994097,
+              0.06783735042156414
+            ]
+          ],
+          "row_count": 10,
+          "preview_truncated": false,
+          "query_truncated": false,
+          "formats": {
+            "销售金额": {
+              "unit": "元",
+              "percent": false,
+              "scale": "fraction"
+            },
+            "目标金额": {
+              "unit": "元",
+              "percent": false,
+              "scale": "fraction"
+            },
+            "销售数量": {
+              "unit": "盒",
+              "percent": false,
+              "scale": "fraction"
+            },
+            "达成率": {
+              "unit": "%",
+              "percent": true,
+              "scale": "fraction"
+            },
+            "销售额同比": {
+              "unit": "%",
+              "percent": true,
+              "scale": "fraction"
+            }
+          }
+        },
+        "scope": "2026年1—10月，10城市全部渠道与终端；金额单位元，数量单位盒；同比对比2025年1—10月同月"
+      }
+    }
+  ]
+}

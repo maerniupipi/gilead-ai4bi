@@ -1,0 +1,23 @@
+sequenceDiagram
+  actor U as 业务用户
+  participant R as ReAct
+  participant A as 原生接口适配器
+  participant L as 强生实验中心
+  participant D as 吉利德 MySQL
+  U->>R: 问题与会话
+  Note over R,L: 目标链路先取得可信身份与区域范围 此授权闭环待实现
+  R->>R: 检索吉利德口径 拆解原子问题
+  R->>A: ask_lab actual 问题与参数
+  A->>L: POST gateway v2 lab content id features
+  L->>L: 知识召回 SQL生成 授权编译与校验
+  Note over L,D: 授权编译需新增 Gilead DDI 策略
+  L->>D: 只读查询 六表数据源18
+  D-->>L: 列 行 截断状态
+  L-->>A: SSE trace_id summary done
+  A->>L: GET 同一 trace 的执行记录
+  L-->>A: 步骤16 实际SQL与结果
+  A->>A: 校验 trace 问题 成功状态 SQL 结果形状
+  A-->>R: SQL候选与运行内证据
+  R->>A: query_db 相同SQL
+  A-->>R: 已执行结果 不重新连接旧数据库
+  R-->>U: 回答 表格 图表与来源

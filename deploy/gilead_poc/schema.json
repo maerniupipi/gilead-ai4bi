@@ -1,0 +1,812 @@
+{
+  "sales_target_ai4bi": [
+    {
+      "name": "year_month",
+      "type": "integer",
+      "nullable": true,
+      "comment": "月份键，采用 YYYYMM 整数格式"
+    },
+    {
+      "name": "hco_code",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "医疗机构（HCO）编码"
+    },
+    {
+      "name": "hco_name",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "医疗机构（HCO）名称"
+    },
+    {
+      "name": "teri_code",
+      "type": "varchar(50)",
+      "nullable": true,
+      "comment": "区域销售代表（TS）的销售区域编码"
+    },
+    {
+      "name": "sam_teri_code",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "SAM 层级的销售区域编码"
+    },
+    {
+      "name": "rd_teri_code",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "RD / RSM 层级的销售区域编码"
+    },
+    {
+      "name": "brand_code",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "品牌编码"
+    },
+    {
+      "name": "brand_name_cn",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "品牌中文名称"
+    },
+    {
+      "name": "brand_name_en",
+      "type": "varchar(4000)",
+      "nullable": true,
+      "comment": "品牌英文名称"
+    },
+    {
+      "name": "city_code",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "城市编码"
+    },
+    {
+      "name": "city_name_cn",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "城市中文名称"
+    },
+    {
+      "name": "province_code",
+      "type": "varchar(50)",
+      "nullable": true,
+      "comment": "省份编码"
+    },
+    {
+      "name": "province_name_cn",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "省份中文名称"
+    },
+    {
+      "name": "tier",
+      "type": "varchar(500)",
+      "nullable": true,
+      "comment": "医疗机构（HCO）/ 客户等级"
+    },
+    {
+      "name": "sales_qty",
+      "type": "numeric(38,6)",
+      "nullable": true,
+      "comment": "实际销售数量；使用 SUM 汇总"
+    },
+    {
+      "name": "sales_amt",
+      "type": "numeric(38,6)",
+      "nullable": true,
+      "comment": "实际销售金额，单位为人民币（CNY）；使用 SUM 汇总"
+    },
+    {
+      "name": "sales_amt_asp",
+      "type": "numeric(38,6)",
+      "nullable": true,
+      "comment": "按 ASP 口径重算的实际金额（报表中以美元计）"
+    },
+    {
+      "name": "target_qty",
+      "type": "numeric(38,6)",
+      "nullable": true,
+      "comment": "目标销售数量"
+    },
+    {
+      "name": "target_amt",
+      "type": "numeric(38,6)",
+      "nullable": true,
+      "comment": "目标销售金额，单位为人民币（CNY）"
+    },
+    {
+      "name": "target_amt_asp",
+      "type": "numeric(38,6)",
+      "nullable": true,
+      "comment": "按 ASP 口径重算的目标金额（报表中以美元计）"
+    },
+    {
+      "name": "market_type_latest",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "最新市场归属（核心市场、CSO、多渠道、DDI）"
+    },
+    {
+      "name": "terminal_type_latest",
+      "type": "varchar(50)",
+      "nullable": true,
+      "comment": "最新终端类型（医院准入、药房、电商、互联网医院）"
+    },
+    {
+      "name": "terminal_channel_latest",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "最新终端渠道"
+    },
+    {
+      "name": "terminal_platform_latest",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "最新终端平台"
+    },
+    {
+      "name": "ts_name",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "TS 代表姓名"
+    },
+    {
+      "name": "ts_adid",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "TS 代表的 AD 账户 ID"
+    },
+    {
+      "name": "sam_name",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "SAM 姓名"
+    },
+    {
+      "name": "sam_adid",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "SAM 的 AD 账户 ID"
+    },
+    {
+      "name": "rd_name",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "RD / RSM 姓名"
+    },
+    {
+      "name": "rd_adid",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "RD / RSM 的 AD 账户 ID"
+    },
+    {
+      "name": "region",
+      "type": "varchar(50)",
+      "nullable": true,
+      "comment": "销售大区"
+    },
+    {
+      "name": "data_type",
+      "type": "varchar(7)",
+      "nullable": false,
+      "comment": "数据粒度类型：Daily（日度）或 Monthly（月度）"
+    },
+    {
+      "name": "ta",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "治疗领域"
+    },
+    {
+      "name": "bu",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "业务单元"
+    }
+  ],
+  "v_ai4bi_ddi_sales": [
+    {
+      "name": "id",
+      "type": "bigint",
+      "nullable": true,
+      "comment": "内部记录 ID；未声明主键"
+    },
+    {
+      "name": "sales_id",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "业务销售记录 ID；不唯一"
+    },
+    {
+      "name": "sales_date",
+      "type": "date",
+      "nullable": true,
+      "comment": "销售日期"
+    },
+    {
+      "name": "year_month",
+      "type": "integer",
+      "nullable": true,
+      "comment": "销售月份，采用 YYYYMM 格式"
+    },
+    {
+      "name": "upstream_code",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "上游客户内部编码"
+    },
+    {
+      "name": "upstream_extr_code",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "上游客户外部编码"
+    },
+    {
+      "name": "downstream_code",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "下游客户内部编码"
+    },
+    {
+      "name": "downstream_extr_code",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "下游客户外部编码"
+    },
+    {
+      "name": "affiliate_hco_code",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "关联医疗机构（HCO）编码；报表中用于限定权限范围的字段"
+    },
+    {
+      "name": "prod_code_codi",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "CODI 产品编码；与 prod_master 关联的键"
+    },
+    {
+      "name": "prod_code",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "内部产品编码"
+    },
+    {
+      "name": "sales_qty",
+      "type": "numeric(16,4)",
+      "nullable": true,
+      "comment": "销售数量"
+    },
+    {
+      "name": "data_channel",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "数据渠道"
+    },
+    {
+      "name": "upstream_level",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "上游客户层级"
+    },
+    {
+      "name": "downstream_level",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "下游客户层级"
+    },
+    {
+      "name": "downstream_is_special_flag",
+      "type": "integer",
+      "nullable": true,
+      "comment": "特殊下游客户标识"
+    },
+    {
+      "name": "price_hist",
+      "type": "numeric(16,4)",
+      "nullable": true,
+      "comment": "历史价格"
+    },
+    {
+      "name": "special_price_hist",
+      "type": "numeric(16,4)",
+      "nullable": true,
+      "comment": "历史特殊价格"
+    },
+    {
+      "name": "standard_price_hist",
+      "type": "numeric(16,4)",
+      "nullable": true,
+      "comment": "历史标准价格"
+    },
+    {
+      "name": "price_latest",
+      "type": "numeric(16,4)",
+      "nullable": true,
+      "comment": "最新价格；用于计算人民币金额"
+    },
+    {
+      "name": "daily_date_version",
+      "type": "date",
+      "nullable": true,
+      "comment": "日度数据版本日期"
+    },
+    {
+      "name": "market_type",
+      "type": "varchar(255)",
+      "nullable": true,
+      "comment": "历史 / 原始市场归属"
+    },
+    {
+      "name": "terminal_type",
+      "type": "varchar(255)",
+      "nullable": true,
+      "comment": "历史 / 原始终端类型"
+    },
+    {
+      "name": "terminal_channel",
+      "type": "varchar(255)",
+      "nullable": true,
+      "comment": "历史 / 原始终端渠道"
+    },
+    {
+      "name": "terminal_platform",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "历史 / 原始终端平台"
+    },
+    {
+      "name": "market_type_latest",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "最新市场归属"
+    },
+    {
+      "name": "terminal_type_latest",
+      "type": "varchar(50)",
+      "nullable": true,
+      "comment": "最新终端类型"
+    },
+    {
+      "name": "terminal_channel_latest",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "最新终端渠道"
+    },
+    {
+      "name": "terminal_platform_latest",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "最新终端平台"
+    },
+    {
+      "name": "channel_source",
+      "type": "varchar(255)",
+      "nullable": true,
+      "comment": "渠道来源；当前全部为空"
+    },
+    {
+      "name": "data_type",
+      "type": "varchar(255)",
+      "nullable": true,
+      "comment": "数据粒度类型；当前为 Daily"
+    },
+    {
+      "name": "sales_type",
+      "type": "varchar(50)",
+      "nullable": true,
+      "comment": "销售类型；当前仅有纯销"
+    },
+    {
+      "name": "from_cust_bizlevel",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "上游客户业务层级"
+    },
+    {
+      "name": "to_cust_bizlevel",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "下游客户业务层级"
+    },
+    {
+      "name": "from_cust_org_type1",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "上游客户的第1级组织类型"
+    },
+    {
+      "name": "codi_rec_id",
+      "type": "bigint",
+      "nullable": true,
+      "comment": "CODI 中的源记录 ID"
+    },
+    {
+      "name": "asp_price",
+      "type": "numeric(16,2)",
+      "nullable": true,
+      "comment": "ASP 价格；美元金额为 sales_qty * asp_price"
+    },
+    {
+      "name": "brand_name_cn",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "品牌中文名称；报表仍通过 prod_master 确定品牌编码"
+    }
+  ],
+  "prod_master": [
+    {
+      "name": "prod_code",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "内部产品编码；候选业务键"
+    },
+    {
+      "name": "prod_code_codi",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "CODI 产品编码；关联 DDI 明细的桥接键"
+    },
+    {
+      "name": "prod_name_cn",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "产品名称（中文 / 英文）"
+    },
+    {
+      "name": "prod_name_en",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "产品名称（中文 / 英文）"
+    },
+    {
+      "name": "prod_alias",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "产品别名"
+    },
+    {
+      "name": "chemical_name",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "化学名称"
+    },
+    {
+      "name": "generic_name",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "通用名称"
+    },
+    {
+      "name": "brand_code",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "品牌编码；一个品牌可能对应多个产品 / 规格"
+    },
+    {
+      "name": "brand_name_cn",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "品牌名称（中文 / 英文）"
+    },
+    {
+      "name": "brand_name_en",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "品牌名称（中文 / 英文）"
+    },
+    {
+      "name": "dosage_forms",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "剂型"
+    },
+    {
+      "name": "origin_place",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "原产国 / 产地"
+    },
+    {
+      "name": "cold_chain_flag",
+      "type": "integer",
+      "nullable": true,
+      "comment": "冷链标识"
+    },
+    {
+      "name": "pkg_type",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "包装类型和包装规格"
+    },
+    {
+      "name": "pkg_size",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "包装类型和包装规格"
+    },
+    {
+      "name": "min_unit",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "最小单位和单位规格"
+    },
+    {
+      "name": "min_unit_size",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "最小单位和单位规格"
+    },
+    {
+      "name": "prod_imgurl",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "产品图片网址"
+    },
+    {
+      "name": "manufacturer",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "生产商及其地址"
+    },
+    {
+      "name": "manufacturer_addr",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "生产商及其地址"
+    },
+    {
+      "name": "specification",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "产品规格"
+    },
+    {
+      "name": "license_issue_flag",
+      "type": "integer",
+      "nullable": true,
+      "comment": "注册 / 许可证状态标识"
+    },
+    {
+      "name": "license_num",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "注册 / 许可证编号"
+    },
+    {
+      "name": "license_eff_date",
+      "type": "timestamp",
+      "nullable": true,
+      "comment": "许可证生效和到期时间戳"
+    },
+    {
+      "name": "license_exp_date",
+      "type": "timestamp",
+      "nullable": true,
+      "comment": "许可证生效和到期时间戳"
+    },
+    {
+      "name": "ta_code",
+      "type": "varchar(100)",
+      "nullable": true,
+      "comment": "治疗领域编码"
+    },
+    {
+      "name": "ta_name_cn",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "治疗领域名称（中文 / 英文）"
+    },
+    {
+      "name": "ta_name_en",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "治疗领域名称（中文 / 英文）"
+    }
+  ],
+  "teri_hierachy": [
+    {
+      "name": "year_month",
+      "type": "integer",
+      "nullable": true,
+      "comment": "月度快照键，采用 YYYYMM 格式"
+    },
+    {
+      "name": "hco_code",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "医疗机构（HCO）编码及中文名称"
+    },
+    {
+      "name": "hco_name_cn",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "医疗机构（HCO）编码及中文名称"
+    },
+    {
+      "name": "province_name_cn",
+      "type": "varchar(500)",
+      "nullable": true,
+      "comment": "省份名称和编码"
+    },
+    {
+      "name": "province_code",
+      "type": "varchar(500)",
+      "nullable": true,
+      "comment": "省份名称和编码"
+    },
+    {
+      "name": "city_name_cn",
+      "type": "varchar(500)",
+      "nullable": true,
+      "comment": "城市名称和编码"
+    },
+    {
+      "name": "city_code",
+      "type": "varchar(500)",
+      "nullable": true,
+      "comment": "城市名称和编码"
+    },
+    {
+      "name": "ta",
+      "type": "varchar(50)",
+      "nullable": true,
+      "comment": "治疗领域"
+    },
+    {
+      "name": "teri_ta",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "销售区域侧的治疗领域（TA）分类"
+    },
+    {
+      "name": "ts_teri_code",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "TS 销售区域编码和名称"
+    },
+    {
+      "name": "ts_teri_name",
+      "type": "varchar(50)",
+      "nullable": true,
+      "comment": "TS 销售区域编码和名称"
+    },
+    {
+      "name": "ts_empl_name",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "TS 负责人姓名和 AD 账户 ID"
+    },
+    {
+      "name": "ts_empl_adid",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "TS 负责人姓名和 AD 账户 ID"
+    },
+    {
+      "name": "asm_lvl_teri_code",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "ASM 层级的销售区域编码和名称"
+    },
+    {
+      "name": "asm_lvl_teri_name",
+      "type": "varchar(50)",
+      "nullable": true,
+      "comment": "ASM 层级的销售区域编码和名称"
+    },
+    {
+      "name": "asm_lvl_empl_name",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "ASM 负责人姓名和 AD 账户 ID"
+    },
+    {
+      "name": "asm_lvl_empl_adid",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "ASM 负责人姓名和 AD 账户 ID"
+    },
+    {
+      "name": "rsm_lvl_teri_code",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "RSM / RD 层级的销售区域编码和名称"
+    },
+    {
+      "name": "rsm_lvl_teri_name",
+      "type": "varchar(50)",
+      "nullable": true,
+      "comment": "RSM / RD 层级的销售区域编码和名称"
+    },
+    {
+      "name": "rsm_lvl_empl_name",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "RSM / RD 负责人姓名和 AD 账户 ID"
+    },
+    {
+      "name": "rsm_lvl_empl_adid",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "RSM / RD 负责人姓名和 AD 账户 ID"
+    },
+    {
+      "name": "sd_lvl_teri_code",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "SD 层级的销售区域编码和名称"
+    },
+    {
+      "name": "sd_lvl_teri_name",
+      "type": "varchar(50)",
+      "nullable": true,
+      "comment": "SD 层级的销售区域编码和名称"
+    },
+    {
+      "name": "sd_lvl_empl_name",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "SD 负责人姓名和 AD 账户 ID"
+    },
+    {
+      "name": "sd_lvl_empl_adid",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "SD 负责人姓名和 AD 账户 ID"
+    },
+    {
+      "name": "tier",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "医疗机构（HCO）/ 客户等级"
+    },
+    {
+      "name": "bu",
+      "type": "varchar(20)",
+      "nullable": true,
+      "comment": "业务单元"
+    }
+  ],
+  "ddi_coverage": [
+    {
+      "name": "brand_code",
+      "type": "varchar(200)",
+      "nullable": true,
+      "comment": "品牌编码"
+    },
+    {
+      "name": "sales_qty_daily",
+      "type": "numeric(38,8)",
+      "nullable": true,
+      "comment": "日度销售数量"
+    },
+    {
+      "name": "sales_qty_monthly",
+      "type": "numeric(38,4)",
+      "nullable": true,
+      "comment": "月度销售数量"
+    },
+    {
+      "name": "coverage",
+      "type": "numeric(38,6)",
+      "nullable": true,
+      "comment": "覆盖比例 / 缩放系数；观测到的范围约为 0.114583 至 1.004446"
+    }
+  ],
+  "data_range_config": [
+    {
+      "name": "max_daily_yearmonth",
+      "type": "integer",
+      "nullable": true,
+      "comment": "最近已结算月份，采用 YYYYMM 格式；用作权限批次的快照月份以及销售区域层级的月份筛选条件"
+    },
+    {
+      "name": "max_ddi_version",
+      "type": "text",
+      "nullable": true,
+      "comment": "最新 DDI 销售日期；转换为 DATE 类型后用于标准报表的 By Date（按日期）维度"
+    }
+  ]
+}

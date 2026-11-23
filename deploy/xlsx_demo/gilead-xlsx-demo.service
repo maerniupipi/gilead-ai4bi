@@ -1,0 +1,26 @@
+[Unit]
+Description=Gilead XLSX Demo
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=gilead-xlsx
+Group=gilead-xlsx
+WorkingDirectory=/opt/gilead-xlsx-demo/current/backend_v2
+EnvironmentFile=/etc/gilead-xlsx-demo.env
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/opt/gilead-xlsx-demo/venv/bin/python -m uvicorn xiaoying_quick.app:app --host 0.0.0.0 --port 9999
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=90
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/gilead-xlsx-demo
+
+[Install]
+WantedBy=multi-user.target

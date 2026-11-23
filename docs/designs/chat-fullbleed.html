@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>小英对话区 · 全幅流式布局设计稿</title>
+  <style>
+    :root {
+      --accent: #8a174d;
+      --accent-dark: #641039;
+      --accent-soft: #f6e8ef;
+      --plum: #2b1622;
+      --navy: #17344b;
+      --success: #227257;
+      --bg: #f4f1f2;
+      --paper: #ffffff;
+      --ink: #1c1418;
+      --ink-2: #6a5d64;
+      --ink-3: #968990;
+      --line: rgba(43, 22, 34, .08);
+      --line-strong: rgba(43, 22, 34, .14);
+      --shadow: 0 10px 30px rgba(43, 22, 34, .06);
+      --shadow-lg: 0 22px 56px rgba(43, 22, 34, .12);
+      --body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+      --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+      --mono: "SF Mono", ui-monospace, Menlo, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      background: #ece7e9;
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 14px;
+      letter-spacing: -.01em;
+      line-height: 1.6;
+    }
+    button { color: inherit; cursor: pointer; font: inherit; }
+
+    /* ===== Design chrome around the product frame ===== */
+    .stage {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 0;
+    }
+    .board {
+      align-items: center;
+      background: #f7f4f5;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      gap: 18px;
+      justify-content: space-between;
+      min-height: 56px;
+      padding: 8px 20px;
+    }
+    .board-left { align-items: baseline; display: flex; gap: 12px; }
+    .board-left h1 { font-family: var(--display); font-size: 15px; font-weight: 650; letter-spacing: -.02em; }
+    .board-left p { color: var(--ink-3); font-size: 12px; }
+    .toggles {
+      background: rgba(43, 22, 34, .06);
+      border-radius: 12px;
+      display: flex;
+      gap: 2px;
+      padding: 3px;
+    }
+    .toggles button {
+      background: transparent;
+      border: 0;
+      border-radius: 10px;
+      color: var(--ink-2);
+      font-size: 13px;
+      font-weight: 600;
+      min-height: 32px;
+      padding: 6px 14px;
+    }
+    .toggles button.on {
+      background: var(--paper);
+      box-shadow: 0 1px 4px rgba(43, 22, 34, .10);
+      color: var(--ink);
+    }
+    .notes { color: var(--ink-3); font-size: 11.5px; }
+    .notes b { color: var(--accent); font-weight: 650; }
+
+    .frame-wrap {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 18px 18px 22px;
+    }
+    .app {
+      background: var(--paper);
+      border: 1px solid var(--line-strong);
+      border-radius: 18px;
+      box-shadow: var(--shadow-lg);
+      display: grid;
+      grid-template-columns: 248px minmax(0, 1fr);
+      height: min(900px, calc(100vh - 110px));
+      margin: 0 auto;
+      max-width: 1440px;
+      min-height: 640px;
+      overflow: hidden;
+    }
+
+    /* ===== Sidebar (unchanged) ===== */
+    .side {
+      background: rgba(255, 251, 252, .92);
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      padding: 20px 14px 16px;
+    }
+    .brand { align-items: center; display: flex; gap: 11px; padding: 2px 8px 20px; }
+    .brand img { border-radius: 50%; height: 38px; object-fit: cover; width: 38px; box-shadow: 0 6px 16px rgba(138, 23, 77, .16); }
+    .brand strong { display: block; font-size: 17px; font-weight: 600; letter-spacing: -.02em; }
+    .brand span { color: var(--ink-3); display: block; font-size: 11px; margin-top: 2px; }
+    .newchat {
+      background: var(--accent); border: 0; border-radius: 14px; color: white;
+      font-size: 14px; font-weight: 500; min-height: 40px; width: 100%;
+    }
+    .nav { flex: 1; margin-top: 18px; }
+    .nav-label { color: var(--ink-3); font-size: 11px; font-weight: 500; letter-spacing: .04em; margin: 18px 12px 8px; }
+    .nav a {
+      align-items: center; border-radius: 12px; color: var(--ink-2); display: flex;
+      font-size: 14px; gap: 11px; min-height: 40px; padding: 8px 12px; text-decoration: none;
+    }
+    .nav a.on { background: var(--accent-soft); color: var(--accent-dark); font-weight: 500; }
+    .nav svg { flex: 0 0 18px; height: 18px; width: 18px; }
+    .recent { color: var(--ink-3); font-size: 13px; min-height: 34px; overflow: hidden; padding: 6px 12px; text-overflow: ellipsis; white-space: nowrap; }
+    .uarea { align-items: center; border-top: 1px solid var(--line); display: flex; gap: 8px; margin-top: 12px; padding: 14px 2px 0; }
+    .av { align-items: center; background: var(--accent-soft); border-radius: 50%; color: var(--accent-dark); display: flex; flex: 0 0 34px; font-size: 13px; font-weight: 700; height: 34px; justify-content: center; }
+
+    /* ===== Main shell ===== */
+    .main { background: var(--paper); display: flex; flex-direction: column; min-width: 0; }
+    .chat-topbar {
+      align-items: center; background: var(--paper); border-bottom: 1px solid var(--line);
+      display: flex; justify-content: space-between; min-height: 52px; padding: 0 28px;
+    }
+    .chat-topbar > div { align-items: center; display: flex; gap: 9px; }
+    .chat-topbar img { border-radius: 50%; height: 28px; object-fit: cover; width: 28px; }
+    .chat-topbar strong { font-size: 15px; font-weight: 650; }
+    .chat-topbar span { color: var(--ink-3); font-size: 12px; }
+    .connection-state { color: var(--ink-3); font-size: 11px; font-weight: 600; }
+    .chat { display: flex; flex: 1; flex-direction: column; min-height: 0; overflow-y: auto; }
+
+    /* ===== Current layout ===== */
+    .current .cwrap {
+      display: flex; flex-direction: column; gap: 0; margin: 0 auto;
+      max-width: 880px; padding: 22px 28px 28px; width: 100%;
+    }
+    .current .turn-q {
+      background: linear-gradient(90deg, rgba(138, 23, 77, .07), rgba(138, 23, 77, .02) 46%, transparent);
+      border: 1px solid var(--line); border-left: 3px solid var(--accent);
+      border-radius: 12px; padding: 10px 16px 12px;
+    }
+    .current .turn-kicker {
+      color: var(--accent); display: block; font-size: 10px; font-weight: 650;
+      letter-spacing: .14em; margin-bottom: 4px;
+    }
+    .current .turn-question {
+      color: var(--ink); font-family: var(--display); font-size: 16px;
+      font-weight: 650; letter-spacing: -.02em; line-height: 1.45;
+    }
+    .current .turn-a { display: flex; flex-direction: column; gap: 10px; padding: 10px 0 4px; }
+    .current .trace {
+      background: #f6f3f4; border: 1px solid var(--line); border-radius: 12px; padding: 0 14px;
+    }
+    .current .ans {
+      background: var(--paper); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+      border-radius: 12px; display: flex; flex-direction: column; padding: 12px 16px 14px;
+    }
+    .current .composer {
+      background: var(--paper); border-top: 1px solid var(--line); margin: 0 auto;
+      max-width: 880px; padding: 12px 28px 16px; width: 100%;
+    }
+
+    /* ===== Proposed layout ===== */
+    .proposed .cwrap {
+      display: flex; flex-direction: column; gap: 0;
+      margin: 0 auto; max-width: none; padding: 20px 40px 32px; width: 100%;
+    }
+    .proposed .turn-q {
+      display: flex; justify-content: flex-end; margin: 8px 0 18px;
+    }
+    .proposed .turn-kicker { display: none; }
+    .proposed .turn-question {
+      background: var(--accent-soft);
+      border-radius: 18px 18px 6px 18px;
+      color: var(--ink);
+      font-family: var(--display);
+      font-size: 15px;
+      font-weight: 550;
+      letter-spacing: -.015em;
+      line-height: 1.5;
+      max-width: min(72%, 720px);
+      padding: 11px 16px 12px;
+    }
+    .proposed .turn-a { display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 0; }
+    .proposed .trace { background: transparent; border: 0; border-radius: 0; padding: 0; }
+    .proposed .trace-h { min-height: 36px; }
+    .proposed .ans {
+      background: transparent; border: 0; border-radius: 0;
+      display: flex; flex-direction: column; padding: 2px 0 0;
+    }
+    .proposed .answer-kicker { display: none; }
+    .proposed .answer-head { margin: 0 0 6px; }
+    .proposed .answer-meta { margin-left: 0; gap: 8px; }
+    .proposed .composer {
+      background: linear-gradient(180deg, transparent, var(--paper) 28%);
+      border-top: 0; margin: 0; max-width: none;
+      padding: 8px 40px 18px; width: 100%;
+    }
+    .proposed .cbox { background: #f7f3f5; }
+
+    /* Shared chat modules */
+    .trace-h {
+      align-items: center; background: transparent; border: 0; color: var(--ink);
+      display: flex; font-size: 12.5px; font-weight: 650; gap: 8px;
+      justify-content: flex-start; min-height: 40px; padding: 0; text-align: left; width: 100%;
+    }
+    .pulse-dot { background: var(--ink-3); border-radius: 50%; flex: 0 0 7px; height: 7px; width: 7px; }
+    .dur { color: var(--ink-2); font-size: 13px; font-weight: 500; }
+    .chev { color: var(--ink-3); flex: 0 0 auto; font-size: 12px; font-weight: 600; margin-left: auto; }
+    .answer-head { align-items: baseline; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    .answer-kicker { color: var(--accent); font-size: 10px; font-weight: 650; letter-spacing: .14em; }
+    .answer-meta { align-items: baseline; display: flex; gap: 10px; margin-left: auto; }
+    .run-state { color: var(--success); font-size: 11px; font-weight: 550; }
+    .usage { color: var(--ink-3); font: 500 11px var(--mono); }
+    .answer-body { color: var(--ink); font-size: 14px; line-height: 1.7; }
+    .answer-body p { margin: 0 0 10px; }
+    .answer-body h2 {
+      border-top: 1px solid var(--line); color: var(--ink); font-family: var(--display);
+      font-size: 14px; font-weight: 650; letter-spacing: -.02em; margin: 16px 0 0; padding: 12px 0 8px;
+    }
+    .answer-body h2:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
+    .answer-body ul { margin: 0 0 10px 20px; }
+    .answer-body li { margin: 3px 0; }
+    .answer-body table { border-collapse: collapse; font-variant-numeric: tabular-nums; width: 100%; }
+    .answer-body th {
+      border-bottom: 1px solid var(--line); color: var(--ink-3); font-size: 11px;
+      font-weight: 650; letter-spacing: .06em; padding: 0 16px 8px 0; text-align: left; white-space: nowrap;
+    }
+    .answer-body td {
+      border-bottom: 1px solid var(--line); font-size: 13.5px; font-weight: 500;
+      padding: 8px 16px 8px 0; text-align: left;
+    }
+    .answer-body td.num { text-align: right; }
+    .answer-body tbody tr:last-child td { border-bottom: 0; }
+    .path-list { border-top: 1px solid var(--line); margin-top: 14px; padding-top: 10px; }
+    .path-head {
+      align-items: baseline; background: transparent; border: 0; display: flex;
+      gap: 10px; padding: 0; text-align: left; width: 100%;
+    }
+    .path-head > strong { color: var(--ink-3); font: 650 11px var(--body); letter-spacing: .14em; }
+    .path-meta { color: var(--ink-3); flex: 1 1 auto; font: 500 12px var(--body); }
+    .path-chev { color: var(--ink-3); font: 600 12px var(--body); }
+
+    .cbox {
+      align-items: flex-end; background: var(--bg); border: 1px solid var(--line);
+      border-radius: 18px; display: flex; gap: 10px; min-height: 54px; padding: 8px 8px 8px 18px;
+    }
+    .icon-btn {
+      align-items: center; background: transparent; border: 1px solid transparent; border-radius: 9px;
+      color: var(--ink-3); display: inline-flex; height: 30px; justify-content: center; padding: 0 6px;
+    }
+    .cbox .ph { align-self: center; color: var(--ink-3); flex: 1; font-size: 14px; padding: 3px 0; }
+    .send {
+      align-items: center; background: var(--accent); border: 0; border-radius: 50%;
+      color: white; display: flex; flex: 0 0 36px; font-size: 17px; height: 36px; justify-content: center;
+    }
+    .composer-note { color: var(--ink-3); font-size: 11px; margin-top: 8px; text-align: center; }
+    .composer-note span { color: var(--accent); font-weight: 650; }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 980px) {
+      .app { grid-template-columns: 80px 1fr; }
+      .brand > div, .nav-label, .recent, .uarea span { display: none; }
+      .nav a { font-size: 0; justify-content: center; }
+      .proposed .cwrap, .proposed .composer { padding-left: 18px; padding-right: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <header class="board">
+      <div class="board-left">
+        <h1>对话区全幅布局</h1>
+        <p>设计稿 · 未改产品代码</p>
+      </div>
+      <div class="toggles" role="tablist">
+        <button id="btn-current" type="button" onclick="show('current')">现状</button>
+        <button id="btn-proposed" class="on" type="button" onclick="show('proposed')">提案</button>
+      </div>
+      <p class="notes" id="caption"><b>提案：</b>去掉三层卡片框，用户问题右对齐气泡，内容铺满主栏。</p>
+    </header>
+
+    <div class="frame-wrap">
+      <div class="app" id="app" data-mode="proposed">
+
+        <aside class="side">
+          <div class="brand">
+            <img src="./xiaoying.png" alt="小英" />
+            <div><strong>小英</strong><span>阿斯利康业务助手</span></div>
+          </div>
+          <button class="newchat" type="button">＋ 新对话</button>
+          <nav class="nav">
+            <a class="on" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 6h14M5 12h9M5 18h11"/></svg>
+              和小英聊
+            </a>
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 1.5"/></svg>
+              个人记忆
+            </a>
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 5h12v14H6zM9 9h6M9 13h6"/></svg>
+              业务知识
+            </a>
+            <div class="nav-label">最近</div>
+            <div class="recent">25年Q1山东 Roxa 零售销量占比</div>
+          </nav>
+          <div class="uarea">
+            <div class="av">S</div>
+            <span>业务用户</span>
+          </div>
+        </aside>
+
+        <div class="main">
+          <header class="chat-topbar">
+            <div>
+              <img src="./xiaoying.png" alt="" />
+              <strong>小英</strong>
+              <span>安全的业务数据问答</span>
+            </div>
+            <div class="connection-state">就绪</div>
+          </header>
+
+          <main class="chat">
+            <section class="cwrap proposed" id="cwrap">
+              <article class="turn-q">
+                <span class="turn-kicker">你问</span>
+                <p class="turn-question">25年Q1山东，Roxa在零售的销量占比是</p>
+              </article>
+              <article class="turn-a">
+                <section class="trace">
+                  <button class="trace-h" type="button">
+                    <span class="pulse-dot"></span>
+                    小英 <span class="dur">想好了 · 9 步</span>
+                    <span class="chev">展开 +</span>
+                  </button>
+                </section>
+                <section class="ans">
+                  <header class="answer-head">
+                    <span class="answer-kicker">回答</span>
+                    <div class="answer-meta">
+                      <span class="run-state">完成</span>
+                      <span class="usage">20,409 tokens</span>
+                    </div>
+                  </header>
+                  <div class="answer-body">
+                    <p>查询完成，结果如下：</p>
+                    <p><strong>2025年Q1（1-3月），山东省，Retail（零售）渠道，爱瑞卓（Roxadustat）的销量占比（Actual Con%，金额口径）为 1.70%。</strong></p>
+                    <table>
+                      <thead>
+                        <tr><th>指标</th><th class="num">数值</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Roxadustat 山东 Retail 渠道 Actual Con%</td>
+                          <td class="num"><strong>1.70%</strong></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <h2>口径说明：</h2>
+                    <ul>
+                      <li><strong>时间：</strong>2025年1-3月（Q1）</li>
+                      <li><strong>地区：</strong>山东省</li>
+                      <li><strong>渠道：</strong>Retail（零售渠道，channel字段）</li>
+                      <li><strong>产品：</strong>Roxadustat（爱瑞卓/Evrenzo）</li>
+                      <li><strong>指标：</strong>Actual Con% = 爱瑞卓在山东零售渠道的实际销售金额 ÷ 山东零售渠道全部产品的实际销售金额</li>
+                      <li><strong>数据源：</strong>内部实际销售数据（actual），数据最新月为 2026-07</li>
+                    </ul>
+                  </div>
+                  <div class="path-list">
+                    <button class="path-head" type="button">
+                      <strong>推理路径</strong>
+                      <span class="path-meta">20 次工具调用</span>
+                      <span class="path-chev">展开 +</span>
+                    </button>
+                  </div>
+                </section>
+              </article>
+            </section>
+          </main>
+
+          <footer class="composer" id="composer">
+            <div class="cbox">
+              <button class="icon-btn" type="button" aria-label="模型">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 8h9M18 8h1M5 12h3M12 12h7M5 16h11M20 16h-1"/></svg>
+              </button>
+              <button class="icon-btn" type="button" aria-label="深度思考">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 3.5l1.9 5 5 1.9-5 1.9-1.9 5-1.9-5-5-1.9 5-1.9 1.9-5z"/></svg>
+              </button>
+              <div class="ph">想问什么，跟小英说一声</div>
+              <button class="send" type="button">↑</button>
+            </div>
+            <div class="composer-note"><span>小英</span> · 回答以运行事实为依据，重要决策请核验来源</div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function show(mode) {
+      const app = document.getElementById('app');
+      const wrap = document.getElementById('cwrap');
+      const composer = document.getElementById('composer');
+      const currentBtn = document.getElementById('btn-current');
+      const proposedBtn = document.getElementById('btn-proposed');
+      const caption = document.getElementById('caption');
+      const isProposed = mode === 'proposed';
+      app.dataset.mode = mode;
+      app.classList.toggle('current', !isProposed);
+      app.classList.toggle('proposed', isProposed);
+      wrap.className = 'cwrap ' + mode;
+      composer.className = 'composer';
+      currentBtn.classList.toggle('on', !isProposed);
+      proposedBtn.classList.toggle('on', isProposed);
+      caption.innerHTML = isProposed
+        ? '<b>提案：</b>去掉三层卡片框，用户问题右对齐气泡，内容铺满主栏。'
+        : '<b>现状：</b>880px 居中栏 +「你问 / 小英 / 回答」各自套一层外框。';
+    }
+    const initial = new URLSearchParams(location.search).get('mode') === 'current' ? 'current' : 'proposed';
+    show(initial);
+  </script>
+</body>
+</html>

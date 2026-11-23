@@ -1,0 +1,16 @@
+flowchart TB
+  WEB[网页端 Vue 3 已有] --> API[FastAPI 与持久化 Agent Loop 已有]
+  WX[企业微信 待接入] -.-> API
+  ID[Okta 身份与授权服务 待接入] -.-> API
+  API --> MODEL[ReAct 协调模型 沿用兼容配置]
+  API --> ADAPTER[强生原生实验中心适配 已完成契约验证]
+  API --> CONTROL[(gilead_agent_loop 已建独立控制库)]
+  ADAPTER --> CENTER[强生实验中心 原生 SSE 与 trace 接口]
+  KB[吉利德知识库和实验室 待发布] -.-> CENTER
+  POLICY[吉利德区域授权策略 待实现] -.-> CENTER
+  CENTER --> READER[专用六表只读账号 已建]
+  READER --> BIZ[(gilead_poc 六表模拟数据)]
+  CENTER --> CMODEL[实验中心既有模型管理]
+  API -.-> OUTPUT[标准 DDI 报表与模板导出 待完善]
+  classDef planned fill:#f7f7f7,stroke:#7b8796,stroke-dasharray:5 4;
+  class WX,ID,KB,POLICY,OUTPUT planned;

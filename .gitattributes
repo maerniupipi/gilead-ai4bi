@@ -1,0 +1,4 @@
+* text=auto
+# Markdown hard line breaks and the upstream font license preserve trailing spaces.
+*.md whitespace=-blank-at-eol
+backend_v2/src/xiaoying_quick/infrastructure/export_fonts/OFL.txt whitespace=-blank-at-eol
